@@ -1,5 +1,6 @@
 import React, { useContext, useState } from "react";
-// import authContext from "../context/auth-context";
+import authContext from "../context/auth-context";
+import { useNavigate } from "react-router-dom";
 // import { useNavigate } from "react-router-dom";
 
 function login() {
@@ -7,16 +8,20 @@ function login() {
   const [email, setEmail] = useState("");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-//   const { login, setIsLoggedIn } = useContext(authContext);
+  const { login, setIsLoggedIn } = useContext(authContext);
 
-//   const navigate = useNavigate();
+  const navigate = useNavigate();
+
+const auth = useContext(authContext)
+
+  console.log(auth)
 
   const login_signupHandler = async (event) => {
     event.preventDefault();
 
     let response;
     if (isSignup) {
-        console.log(email, username, password, 'FFOFOFJJF')
+        console.log(email, username, password)
       response = await fetch(`${import.meta.env.VITE_BACKEND_URL}/users/signup`, {
         method: "POST",
         headers: {
@@ -72,11 +77,11 @@ function login() {
         <div class="sm:mx-auto sm:w-full sm:max-w-sm">
           <img
             className="mx-auto h-10 w-auto"
-            src="https://em-content.zobj.net/source/apple/391/man-technologist-medium-light-skin-tone_1f468-1f3fc-200d-1f4bb.png"
-            alt="ChatApp"
+            src="https://emoji.aranja.com/static/emoji-data/img-apple-160/1f3a8.png"
+            alt="BetterGram"
           />
-          <h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
-            ChatMe
+          <h2 className="mt-4 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
+            BetterGram
           </h2>
         </div>
 
