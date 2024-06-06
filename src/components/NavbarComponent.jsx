@@ -17,7 +17,13 @@ function NavbarComponent() {
     <div className="navbar bg-base-100">
       <div className="flex-1" onClick={() => navigate('/')}>
         <a className="btn btn-ghost text-xl">betterGram</a>
+        <p>{auth.userId}</p>
+        
+
       </div>
+
+      <button className="btn btn-success text-white" onClick={() => navigate('/allusers')}>AllUsers</button>
+
       <div className="flex-none">
         <div className="dropdown dropdown-end">
           <div tabIndex={0} role="button" className="btn btn-ghost btn-circle">
@@ -78,6 +84,12 @@ function NavbarComponent() {
             <li>
               <a>Settings</a>
             </li>
+
+            <li onClick={() => navigate('/newpost')}>
+                <a>NewPost</a>
+            </li>
+
+
             <li onClick={logoutHandler}>
               <a>Logout</a>
             </li>

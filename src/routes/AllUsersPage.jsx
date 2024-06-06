@@ -1,8 +1,13 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
+import authContext from "../context/auth-context";
+import { useNavigate } from "react-router-dom";
 
-function Main() {
+function AllUsersPage() {
   const [users, setUsers] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  
+  const auth = useContext(authContext)
+  const navigate = useNavigate()
 
   useEffect(() => {
     const fetchUsers = async () => {
@@ -12,7 +17,7 @@ function Main() {
 
       const data = await response.json();
 
-    //   console.log(data)
+      console.log(data)
 
       setUsers(data.allUsers);
 
@@ -22,9 +27,30 @@ function Main() {
     fetchUsers();
   }, []);
 
+  const followUserHandler = async (uid) => {
+    console.log(uid)
+    console.log('click on frontend')
+    
+    const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}/users/follow/${uid}`, {
+        method: "POST",
+        headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json",
+            // Authorization: "Bearer " + auth.token,
+          },
+          body: JSON.stringify({
+            loggedInUser: auth.userId,
+            // loggedInUserUsername,
+            // addedUser: uid,
+            // addedUserUsername,
+            // loggedInUser: authuid
+          }),
+    })
+  }
+
   return (
     <div>
-      Main
+      All users....
       {isLoading && <p>Loading...</p>}
       <div>
         {!isLoading &&
@@ -45,8 +71,9 @@ function Main() {
 
 
                   {/* <p>If a dog chews shoes whose shoes does he choose?</p> */}
-             
-                    <button className="btn btn-primary">Follow</button>
+                  <button className="btn btn-primary" onClick={() => navigate(`/user/${user._id}`)}>Go to page</button>
+
+                    <button className="btn btn-primary" onClick={() => followUserHandler(user._id)}>Follow</button>
                 
                 </div>
               </div>
@@ -57,4 +84,4 @@ function Main() {
   );
 }
 
-export default Main;
+export default AllUsersPage;

@@ -6,8 +6,11 @@ import { Route, Routes, useNavigate } from 'react-router-dom'
 
 import Login from './login'
 import authContext from "../context/auth-context";
-import Main from "./Main";
+import Main from "./AllUsersPage";
 import Profile from "./Profile";
+import NewPost from "./NewPost";
+import AllUsersPage from "./AllUsersPage";
+import SingleUserPage from "./SingleUserPage";
 
 function AuthenticatedRoutes() {
   const navigate = useNavigate()
@@ -29,9 +32,13 @@ function AuthenticatedRoutes() {
     //   </>
     // </AuthProvider>
     <Routes>
-      <Route path='/' element={<Main/>}/>
+        <Route path='/' element={<p>feed</p>}/>
+      <Route path='/allusers' element={<AllUsersPage/>}/>
+      <Route path='/user/:uid' element={<SingleUserPage/>}/>
+
       <Route path='/login' element={<Login/>}/>
       <Route path='/profile' element={<Profile/>} />
+      <Route path='/newpost' element={<NewPost/>}/>
 
 
     </Routes>
