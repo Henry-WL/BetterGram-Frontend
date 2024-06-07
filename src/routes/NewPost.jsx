@@ -10,7 +10,7 @@ function NewPost() {
 
         console.log('submit status')
 
-        const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}/users/post`, {
+        const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}/users/post/${auth.userId}`, {
             method: "POST",
             headers: {
               Accept: "application/json",

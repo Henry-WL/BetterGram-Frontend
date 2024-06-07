@@ -12,7 +12,7 @@ function AllUsersPage() {
   useEffect(() => {
     const fetchUsers = async () => {
       const response = await fetch(
-        `${import.meta.env.VITE_BACKEND_URL}/users/`
+        `${import.meta.env.VITE_BACKEND_URL}/users/allusers`
       );
 
       const data = await response.json();
