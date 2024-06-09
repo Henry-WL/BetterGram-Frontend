@@ -175,7 +175,7 @@ function SingleUserPage() {
 
 
 
-        <div>SingleUserFeed for
+        <div>SingleUserFeed for {user.username}
 
 
         {isLoading && <p>Loading...</p>}

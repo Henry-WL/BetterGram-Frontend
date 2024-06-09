@@ -27,7 +27,8 @@ function AllUsersPage() {
     fetchUsers();
   }, []);
 
-  const followUserHandler = async (uid) => {
+  const followUserHandler = async (uid, e) => {
+    e.currentTarget.disabled = true;
     console.log(uid)
     console.log('click on frontend')
     
@@ -47,6 +48,8 @@ function AllUsersPage() {
           }),
     })
   }
+
+  const userIDObj = {_id: auth.userId}
 
   return (
     <div>
@@ -72,8 +75,9 @@ function AllUsersPage() {
 
                   {/* <p>If a dog chews shoes whose shoes does he choose?</p> */}
                   <button className="btn btn-primary" onClick={() => navigate(`/user/${user._id}`)}>Go to page</button>
-
-                    <button className="btn btn-primary" onClick={() => followUserHandler(user._id)}>Follow</button>
+                  {console.log(user.followers.includes({_id: auth.userId}, 0))}
+                  {user.followers.some(follower => follower._id === auth.userId) && <p>INSIDE</p>}
+                    <button className="btn btn-primary" disabled={user.followers.some(follower => follower._id === auth.userId)} onClick={(e) => followUserHandler(user._id, e)}>Follow</button>
                 
                 </div>
               </div>
