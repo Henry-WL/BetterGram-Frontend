@@ -7,6 +7,7 @@ function SingleUserPage() {
     const [user, setUser] = useState({})
     const [isLoading, setIsLoading] = useState(true)
     const [feed, setFeed] = useState([])
+    const [isEditing, setIsEditing] = useState(false)
 
     const {uid} = useParams()
     const auth = useContext(authContext)
@@ -77,12 +78,16 @@ function SingleUserPage() {
         {!isLoading &&
           
             
-              <div className="card w-96 bg-base-100 shadow-xl">
+              <div className="card sm:w-96 md:w-full md:flex-row bg-base-100 shadow-xl">
                 <figure>
+                <div className='w-96'>
                   <img
                     src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg"
                     alt="Shoes"
+                    className='rounded-3xl'
                   />
+
+                    </div> 
                 </figure>
                 <div className="card-body">
                   <h2 className="card-title">{user.email}</h2>
@@ -91,12 +96,14 @@ function SingleUserPage() {
                   <h3>Following: {user.following.length}</h3>
                   <h3>Posts: FIX THIS</h3>
 
+                  <button className="btn btn-primary" onClick={() => setIsEditing(!isEditing)}>{isEditing ? 'Stop' : 'Edit'}</button>
 
                   {/* <p>If a dog chews shoes whose shoes does he choose?</p> */}
 
                     {auth.userId !== uid && <button className="btn btn-primary" onClick={() => followUserHandler(user._id)}>Follow</button>}
 
-                    {auth.userId === uid && (
+                    {auth.userId === uid && isEditing && (
+                        
                 <form>
                   <div>
                     <label className="input input-bordered flex items-center gap-2 mt-1">
