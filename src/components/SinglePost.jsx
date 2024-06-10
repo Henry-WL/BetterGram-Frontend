@@ -104,6 +104,7 @@ function SinglePost({post, setFeed, feed}) {
               post.comments.map((comment) => {
                 return <div className="border-2 border-green-500 p-2 m-2 rounded-lg">{comment.text}
                           <h3>Date: {format(new Date(comment.time), "dd-MM-yyyy h:mm a")}</h3>
+                          <p>{comment._id.username}</p>
 
                 </div>;
               })}

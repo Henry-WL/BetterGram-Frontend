@@ -37,7 +37,7 @@ function AuthenticatedRoutes() {
       <Route path='/user/:uid' element={<SingleUserPage/>}/>
 
       <Route path='/login' element={<Login/>}/>
-      <Route path='/profile' element={<Profile/>} />
+      {/* <Route path='/profile' element={<Profile/>} /> */}
       <Route path='/newpost' element={<NewPost/>}/>
 
 

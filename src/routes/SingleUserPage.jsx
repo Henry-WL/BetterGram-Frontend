@@ -8,9 +8,25 @@ function SingleUserPage() {
     const [isLoading, setIsLoading] = useState(true)
     const [feed, setFeed] = useState([])
     const [isEditing, setIsEditing] = useState(false)
-
+    const [email, setEmail] = useState("")
+    const [username, setUsername] = useState("")
+    const [password, setPassword] = useState("")
     const {uid} = useParams()
     const auth = useContext(authContext)
+
+    const fetchSingleUserFeed = async() => {
+        const response = await fetch(
+            `${import.meta.env.VITE_BACKEND_URL}/users/singleUserFeed/${uid}`
+          );
+    
+          const data = await response.json();
+    
+          console.log(data)
+    
+          setFeed(data.posts);
+    
+          setIsLoading(false);
+    }
 
     useEffect(() => {
         const fetchSingleUser = async () => {
@@ -29,22 +45,43 @@ function SingleUserPage() {
       
           fetchSingleUser();
 
-        const fetchSingleUserFeed = async() => {
-            const response = await fetch(
-                `${import.meta.env.VITE_BACKEND_URL}/users/singleUserFeed/${uid}`
-              );
-        
-              const data = await response.json();
-        
-              console.log(data)
-        
-              setFeed(data.posts);
-        
-              setIsLoading(false);
-        }
-
         fetchSingleUserFeed()
     }, [])
+
+    const editProfileHandler = async (e) => {
+        e.preventDefault()
+        console.log('edit profile handler')
+        // http://localhost:3000/api/users/user/updateUserProfile/1
+        const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}/users/user/updateUserProfile/${auth.userId}`, {
+            method: "PATCH",
+            headers: {
+              Accept: "application/json",
+              "Content-Type": "application/json",
+            //   Authorization: "Bearer " + auth.token,
+            },
+            body: JSON.stringify({
+              // sendinguserId: auth.userId,
+              email: email,
+              username: username,
+              password: password,
+            }),
+          });
+          // setIsLoading(true);
+          setEmail("");
+          setPassword("")
+          setUsername("");
+          
+        //   if (username !== "") {
+        //     auth.setUsername(username);
+        //   }
+      
+          const data = await response.json();
+      
+
+          console.log(data)
+          setUser(data.updatedUser);
+          fetchSingleUserFeed()
+    }
 
   return (
     <div>SingleUserPage
@@ -96,15 +133,17 @@ function SingleUserPage() {
                   <h3>Following: {user.following.length}</h3>
                   <h3>Posts: FIX THIS</h3>
 
-                  <button className="btn btn-primary" onClick={() => setIsEditing(!isEditing)}>{isEditing ? 'Stop' : 'Edit'}</button>
+                  
 
                   {/* <p>If a dog chews shoes whose shoes does he choose?</p> */}
 
                     {auth.userId !== uid && <button className="btn btn-primary" onClick={() => followUserHandler(user._id)}>Follow</button>}
 
+                    {auth.userId === uid && <button className="btn btn-primary" onClick={() => setIsEditing(!isEditing)}>{isEditing ? 'Stop' : 'Edit'}</button>}
+
                     {auth.userId === uid && isEditing && (
                         
-                <form>
+                <form onSubmit={editProfileHandler}>
                   <div>
                     <label className="input input-bordered flex items-center gap-2 mt-1">
                       <svg
@@ -120,8 +159,8 @@ function SingleUserPage() {
                         type="text"
                         className="grow"
                         placeholder={user.email}
-                        // value={email}
-                        // onChange={(e) => setEmail(e.target.value)}
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
                       />
                     </label>
                     <label className="input input-bordered flex items-center gap-2 mt-1">
@@ -137,8 +176,8 @@ function SingleUserPage() {
                         type="text"
                         className="grow"
                         placeholder={user.username}
-                        // value={username}
-                        // onChange={(e) => setUsername(e.target.value)}
+                        value={username}
+                        onChange={(e) => setUsername(e.target.value)}
                       />
                     </label>
                     <label className="input input-bordered flex items-center gap-2 mt-1">
@@ -157,8 +196,8 @@ function SingleUserPage() {
                       <input
                         type="password"
                         className="grow"
-                        // value={password}
-                        // onChange={(e) => setPassword(e.target.value)}
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
                       />
                     </label>
 

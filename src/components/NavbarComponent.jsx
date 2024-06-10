@@ -75,7 +75,7 @@ function NavbarComponent() {
             tabIndex={0}
             className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
           >
-            <li onClick={() => navigate('/profile')}>
+            <li onClick={() => navigate(`/user/${auth.userId}`)}>
               <a className="justify-between">
                 Profile
                 <span className="badge">New</span>
