@@ -1,6 +1,7 @@
 import React, { useContext, useState } from "react";
 import authContext from "../context/auth-context";
 import { format } from 'date-fns';
+import CommentsList from "./CommentsList";
 
 
 function SinglePost({post, setFeed, feed}) {
@@ -77,7 +78,7 @@ function SinglePost({post, setFeed, feed}) {
     }
 
   return (
-    <div key={post._id}>
+    <div key={post._id} className="">
       <div className="card card-compact w-96 bg-base-100 shadow-xl">
         <figure>
           <img
@@ -102,12 +103,15 @@ function SinglePost({post, setFeed, feed}) {
             Comments: {post.comments.length}
             {post.comments.length !== 0 &&
               post.comments.map((comment) => {
-                return <div className="border-2 border-green-500 p-2 m-2 rounded-lg">{comment.text}
-                          <h3>Date: {format(new Date(comment.time), "dd-MM-yyyy h:mm a")}</h3>
-                          <p>{comment._id.username}</p>
+                return <CommentsList comment={comment}/>
+                // return <div className="border-2 border-green-500 p-2 m-2 rounded-lg">{comment.text}
+                //           <h3>Date: {format(new Date(comment.time), "dd-MM-yyyy h:mm a")}</h3>
+                //           <p>{comment._id.username}</p>
 
-                </div>;
+                // </div>;
               })}
+
+         
           </div>
 
           <form onSubmit={(e) => commentSubmitHandler(e, post._id)}>

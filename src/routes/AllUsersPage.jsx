@@ -55,7 +55,7 @@ function AllUsersPage() {
     <div>
       All users....
       {isLoading && <p>Loading...</p>}
-      <div>
+      <div className="flex flex-wrap gap-2">
         {!isLoading &&
           users.map((user) => {
             return (

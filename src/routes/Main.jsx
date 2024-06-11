@@ -40,7 +40,7 @@ function Main() {
         {isLoading && <p>Loading...</p>}
 
 
-        <div>
+        <div className='flex flex-wrap gap-2'>
             {!isLoading && feed.map((post) => {
                 return (
                     <SinglePost post={post} setFeed={setFeed} feed={feed}/>
