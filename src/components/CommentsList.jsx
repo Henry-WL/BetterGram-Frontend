@@ -6,7 +6,7 @@ function CommentsList({comment}) {
     const [showMore, setShowMore] = useState(false)
 
   return (
-    <div className="border-2 border-green-500 p-2 m-2 rounded-lg">
+    <div className="shadow-md p-2 m-2 rounded-lg">
       {/* {comment.text} */}
       {showMore ? comment.text : `${comment.text.substring(0,20)}`}
       <br/>

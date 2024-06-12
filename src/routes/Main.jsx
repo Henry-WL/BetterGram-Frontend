@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react'
 import authContext from '../context/auth-context'
 import SinglePost from '../components/SinglePost'
+import SuggestFollowers from '../components/SuggestFollowers'
 
 function Main() {
 
@@ -34,18 +35,22 @@ function Main() {
   
 
   return (
-    <div>Main
+    <div className='flex'>Main
 
 
         {isLoading && <p>Loading...</p>}
 
 
-        <div className='flex flex-wrap gap-2'>
+        <div className='sm:w-3/5 flex flex-wrap gap-2 m-4'>
             {!isLoading && feed.map((post) => {
                 return (
                     <SinglePost post={post} setFeed={setFeed} feed={feed}/>
                 )
             })}
+        </div>
+
+        <div className='hidden sm:block sm:w-2/5'>
+            <SuggestFollowers/>
         </div>
     </div>
   )

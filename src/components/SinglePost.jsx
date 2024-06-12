@@ -79,18 +79,20 @@ function SinglePost({post, setFeed, feed}) {
 
   return (
     <div key={post._id} className="">
-      <div className="card card-compact w-96 bg-base-100 shadow-xl">
-        <figure>
+      <div className="card card-compact w-full bg-base-100 shadow-xl">
+        
+        
+        <div className="card-body">
+          <h2 className="card-title">{post.userID.username}</h2>
+          <h3>Date: {format(new Date(post.createdAt), "dd-MM-yyyy h:mm a")}</h3>
+          <p>{post.status}</p>
+          <p>Likes: {post.likes.length}</p>
+          <figure>
           <img
             src="https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.jpg"
             alt="Shoes"
           />
         </figure>
-        <div className="card-body">
-          <h2 className="card-title">posted by: {post.userID.username}</h2>
-          <h3>Date: {format(new Date(post.createdAt), "dd-MM-yyyy h:mm a")}</h3>
-          <p>{post.status}</p>
-          <p>Likes: {post.likes.length}</p>
           <div className="card-actions justify-end">
             <button
               className="btn btn-primary"
