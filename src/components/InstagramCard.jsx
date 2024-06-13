@@ -17,7 +17,7 @@ function InstagramCard() {
             className="h-12 w-12 rounded-full"
           />
           <div className="ml-8 flex-col justify-center inline-block">
-            <p className="text-l">Josh Warren</p>
+            <p className="text-l">Josh Smith</p>
             <p className="text-gray-400">@josh</p>
           </div>
         </div>
