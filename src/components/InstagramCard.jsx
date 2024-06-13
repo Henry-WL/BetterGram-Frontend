@@ -82,7 +82,7 @@ function InstagramCard({ post, setFeed, feed }) {
 
     }
   return (
-    <div className="h-[40rem] shadow-2xl w-4/5 rounded-lg my-2">
+    <div className="shadow-xl w-4/5 rounded-lg my-6">
       <div className="flex mx-6 mb-2 justify-between">
         <div className="flex">
           <img
@@ -110,15 +110,15 @@ function InstagramCard({ post, setFeed, feed }) {
       <div className="pl-5 flex justify-between p-2">
         <div className="flex">
           <HiOutlineHeart
-            className="text-3xl mr-2 stroke-black hover:stroke-red-500 hover:fill-red-500 stroke-[1.5px]"
+            className={`text-3xl mr-2 stroke-black hover:stroke-red-500 hover:fill-red-500 stroke-[1.5px] ${post.likes.some(user => user._id === auth.userId) ? `fill-red-500 stroke-red-500` : ``}`}
             onClick={() => likePostHandler(post._id)}
           />
 
           {/* <CiHeart className="text-3xl mr-2 stroke-black fill-blue-500 hover:stroke-red-500 text-red-500 stroke-[0.5px]"/> */}
           {/* <FaRegComment className="text-3xl"/> */}
-          <CiChat1 className="text-3xl mr-2 stroke-black stroke-[0.5px]" />
+          <CiChat1 className="text-3xl mr-2 stroke-black stroke-[0.5px] hover:stroke-[1px]" />
 
-          <CiPaperplane className="text-3xl mr-2 stroke-black stroke-[0.5px]" />
+          <CiPaperplane className="text-3xl mr-2 stroke-black stroke-[0.5px] hover:stroke-[0.75px]" />
         </div>
 
         <div>
@@ -139,7 +139,7 @@ function InstagramCard({ post, setFeed, feed }) {
           <p className="text-gray-400">View All Comments</p>
           <div className="flex-row">
             {post.comments.length !== 0 &&
-              post.comments.slice(0,2).map((comment) => {
+              post.comments.slice().map((comment) => {
                 return <CommentsList comment={comment} />;
               })}
           </div>
