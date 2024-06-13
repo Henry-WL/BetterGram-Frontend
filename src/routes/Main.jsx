@@ -44,10 +44,10 @@ function Main() {
 
 
         <div className='sm:w-3/5 flex flex-wrap gap-2 m-4'>
-        <InstagramCard/>
             {!isLoading && feed.map((post) => {
                 return (
-                    <SinglePost post={post} setFeed={setFeed} feed={feed}/>
+                    // <SinglePost post={post} setFeed={setFeed} feed={feed}/>
+                    <InstagramCard post={post} setFeed={setFeed} feed={feed}/>
                 )
             })}
         </div>

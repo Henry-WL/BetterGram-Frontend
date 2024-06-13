@@ -2,6 +2,7 @@ import React, { useContext, useState } from "react";
 import authContext from "../context/auth-context";
 import { format } from 'date-fns';
 import CommentsList from "./CommentsList";
+import InstagramCard from "./InstagramCard";
 
 
 function SinglePost({post, setFeed, feed}) {
@@ -79,8 +80,8 @@ function SinglePost({post, setFeed, feed}) {
 
   return (
     <div key={post._id} className="">
+        {/* <InstagramCard post={post} likePostHandler={likePostHandler} commentSubmitHandler={commentSubmitHandler}/> */}
       <div className="card card-compact w-full bg-base-100 shadow-xl">
-        
         
         <div className="card-body">
           <h2 className="card-title">{post.userID.username}</h2>
