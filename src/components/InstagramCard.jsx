@@ -4,6 +4,7 @@ import { CiHeart } from "react-icons/ci";
 import { CiChat1 } from "react-icons/ci";
 import { CiPaperplane } from "react-icons/ci";
 import { CiBookmark } from "react-icons/ci";
+import { HiOutlineHeart } from "react-icons/hi";
 
 
 function InstagramCard() {
@@ -35,7 +36,9 @@ function InstagramCard() {
       </div>
       <div className="flex justify-between p-2">
         <div className="flex">
-        <CiHeart className="text-3xl mr-2 stroke-black stroke-[0.5px]"/>
+        <HiOutlineHeart className="text-3xl mr-2 stroke-black hover:stroke-red-500 hover:fill-red-500 stroke-[1.5px]"/>
+
+        {/* <CiHeart className="text-3xl mr-2 stroke-black fill-blue-500 hover:stroke-red-500 text-red-500 stroke-[0.5px]"/> */}
         {/* <FaRegComment className="text-3xl"/> */}
         <CiChat1 className="text-3xl mr-2 stroke-black stroke-[0.5px]"/>
 
@@ -47,6 +50,7 @@ function InstagramCard() {
         </div>
       </div>
       <div>Likes</div>
+      <div>Caption</div>
       <div>Comments</div>
     </div>
   );
