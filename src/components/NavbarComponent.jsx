@@ -17,8 +17,7 @@ function NavbarComponent() {
     <div className="navbar bg-base-100">
       <div className="flex-1" onClick={() => navigate('/')}>
         <a className="btn btn-ghost text-xl">betterGram</a>
-        <p>{auth.userId}</p>
-        
+
 
       </div>
 

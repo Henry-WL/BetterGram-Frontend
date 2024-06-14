@@ -3,6 +3,7 @@ import authContext from '../context/auth-context'
 import SinglePost from '../components/SinglePost'
 import SuggestFollowers from '../components/SuggestFollowers'
 import InstagramCard from '../components/InstagramCard'
+import UserProfileCard from '../components/UserProfileCard'
 
 function Main() {
 
@@ -36,24 +37,29 @@ function Main() {
   
 
   return (
-    <div className='flex'>Main
+    <div className='flex'>
 
         
 
         {isLoading && <p>Loading...</p>}
 
 
-        <div className='sm:w-3/5 flex flex-wrap gap-2 m-4'>
+        <div className='sm:w-4/6 flex flex-wrap gap-2 m-4'>
             {!isLoading && feed.map((post) => {
                 return (
                     // <SinglePost post={post} setFeed={setFeed} feed={feed}/>
+                    
+                    
                     <InstagramCard post={post} setFeed={setFeed} feed={feed}/>
                 )
             })}
         </div>
 
-        <div className='hidden sm:block sm:w-2/5'>
+        <div className='hidden sm:block sm:w-2/6'>
+            <>
+            <UserProfileCard/>
             <SuggestFollowers/>
+            </>
         </div>
     </div>
   )

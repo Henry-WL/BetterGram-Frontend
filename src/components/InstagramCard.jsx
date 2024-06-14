@@ -47,40 +47,78 @@ function InstagramCard({ post, setFeed, feed }) {
           
     }
 
-    const likePostHandler = async(postId) => {
-        console.log('liffihoih')
-        console.log(postId)
-        const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}/posts/likePost/${postId}`, {
-            method: "POST",
-            headers: {
-              Accept: "application/json",
-              "Content-Type": "application/json",
-            //   Authorization: "Bearer " + auth.token,
-            },
-            body: JSON.stringify({
-              userID: auth.userId,
-            //   loggedInUserUsername,
-            //   addedUser: uid,
-            //   addedUserUsername,
-              // loggedInUser: authuid
-            }),
-          });
-
-          const data = await response.json()
-
-          console.log(data)
-
-        //   setFeed([data.updatedPost])
-          const updatedFeed = feed.map((post) => {
-            return post._id === postId ? {...data.updatedPost} : post
-          })
-          
-          console.log(updatedFeed, 'updated Feed')
-          //   console.log('first', postId)
-            setFeed(updatedFeed)
-          
-
+    const checkLiked = () => {
+        return post.likes.some(user => user._id === auth.userId) ? true : false
     }
+
+    const likePostHandler = async(postId) => {
+
+        const checkLikedRun = checkLiked()
+        if (checkLikedRun) {
+            const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}/posts/unlikePost/${postId}`, {
+                method: "POST",
+                headers: {
+                  Accept: "application/json",
+                  "Content-Type": "application/json",
+                //   Authorization: "Bearer " + auth.token,
+                },
+                body: JSON.stringify({
+                  userID: auth.userId,
+                //   loggedInUserUsername,
+                //   addedUser: uid,
+                //   addedUserUsername,
+                  // loggedInUser: authuid
+                }),
+              });
+    
+              const data = await response.json()
+    
+              console.log(data)
+    
+            //   setFeed([data.updatedPost])
+              const updatedFeed = feed.map((post) => {
+                return post._id === postId ? {...data.updatedPost} : post
+              })
+              
+              console.log(updatedFeed, 'updated Feed')
+              //   console.log('first', postId)
+                setFeed(updatedFeed)
+        } else {
+
+            console.log('liffihoih')
+            console.log(postId)
+            const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}/posts/likePost/${postId}`, {
+                method: "POST",
+                headers: {
+                  Accept: "application/json",
+                  "Content-Type": "application/json",
+                //   Authorization: "Bearer " + auth.token,
+                },
+                body: JSON.stringify({
+                  userID: auth.userId,
+                //   loggedInUserUsername,
+                //   addedUser: uid,
+                //   addedUserUsername,
+                  // loggedInUser: authuid
+                }),
+              });
+    
+              const data = await response.json()
+    
+              console.log(data)
+    
+            //   setFeed([data.updatedPost])
+              const updatedFeed = feed.map((post) => {
+                return post._id === postId ? {...data.updatedPost} : post
+              })
+              
+              console.log(updatedFeed, 'updated Feed')
+              //   console.log('first', postId)
+                setFeed(updatedFeed)
+        }
+    }
+
+ 
   return (
     <div className="shadow-xl w-4/5 rounded-lg my-6">
       <div className="flex mx-6 mb-2 justify-between">
@@ -110,7 +148,7 @@ function InstagramCard({ post, setFeed, feed }) {
       <div className="pl-5 flex justify-between p-2">
         <div className="flex">
           <HiOutlineHeart
-            className={`text-3xl mr-2 stroke-black hover:stroke-red-500 hover:fill-red-500 stroke-[1.5px] ${post.likes.some(user => user._id === auth.userId) ? `fill-red-500 stroke-red-500` : ``}`}
+            className={`text-3xl mr-2 stroke-black hover:stroke-red-500 hover:fill-red-500 stroke-[1.5px] ${checkLiked() ? `fill-red-500 stroke-red-500` : ``}`}
             onClick={() => likePostHandler(post._id)}
           />
 
