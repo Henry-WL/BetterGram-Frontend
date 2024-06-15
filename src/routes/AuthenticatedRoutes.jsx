@@ -11,6 +11,7 @@ import Profile from "./Profile";
 import NewPost from "./NewPost";
 import AllUsersPage from "./AllUsersPage";
 import SingleUserPage from "./SingleUserPage";
+import SinglePostPage from "./SinglePostPage";
 
 function AuthenticatedRoutes() {
   const navigate = useNavigate()
@@ -35,6 +36,8 @@ function AuthenticatedRoutes() {
         <Route path='/' element={<Main/>}/>
       <Route path='/allusers' element={<AllUsersPage/>}/>
       <Route path='/user/:uid' element={<SingleUserPage/>}/>
+      <Route path='/post/:pid' element={<SinglePostPage/>}/>
+
 
       <Route path='/login' element={<Login/>}/>
       {/* <Route path='/profile' element={<Profile/>} /> */}

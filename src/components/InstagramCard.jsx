@@ -8,10 +8,12 @@ import { HiOutlineHeart } from "react-icons/hi";
 import { HiOutlineBookmark } from "react-icons/hi";
 import CommentsList from "./CommentsList";
 import authContext from "../context/auth-context";
+import { useNavigate } from "react-router-dom";
 
 function InstagramCard({ post, setFeed, feed }) {
     const [commentText, setCommentText] = useState('')
     const auth = useContext(authContext)
+    const navigate = useNavigate()
 
     const commentSubmitHandler = async (e, postID) => {
         e.preventDefault()
@@ -174,7 +176,7 @@ function InstagramCard({ post, setFeed, feed }) {
           <p className="ml-2">{post.status}</p>
         </div>
         <div className="w-100 text-left">
-          <p className="text-gray-400">View All Comments</p>
+          <p className="text-gray-400 cursor-pointer" onClick={() => navigate(`/post/${post._id}`)}>View All Comments</p>
           <div className="flex-row">
             {post.comments.length !== 0 &&
               post.comments.slice().map((comment) => {
