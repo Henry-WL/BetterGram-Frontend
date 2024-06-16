@@ -5,7 +5,7 @@ import InstagramCard from '../components/InstagramCard'
 
 function SinglePostPage() {
     const [isLoading, setIsLoading] = useState(true)
-    const [singlePost, setSinglePost] = useState([])
+    const [feed, setFeed] = useState([])
     // get feed for followed users posts
     const {pid} = useParams()
     console.log(pid)
@@ -22,7 +22,7 @@ function SinglePostPage() {
 
             console.log(data)
 
-            setSinglePost(data.post)
+            setFeed(data.post)
 
             setIsLoading(false)
         }
@@ -36,10 +36,14 @@ function SinglePostPage() {
         {isLoading && <p>Loading...</p>}
         SinglePostPage
 
-        {!isLoading &&
-        
-        <InstagramCard post={singlePost[0]}/>
-        }
+        {!isLoading && feed.map((post) => {
+                return (
+                    // <SinglePost post={post} setFeed={setFeed} feed={feed}/>
+                    
+                    
+                    <InstagramCard post={post} setFeed={setFeed} feed={feed} showAllComments={true}/>
+                )
+            })}
         </div>
   )
 }

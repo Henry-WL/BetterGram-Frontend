@@ -10,7 +10,7 @@ import CommentsList from "./CommentsList";
 import authContext from "../context/auth-context";
 import { useNavigate } from "react-router-dom";
 
-function InstagramCard({ post, setFeed, feed }) {
+function InstagramCard({ post, setFeed, feed, showAllComments }) {
     const [commentText, setCommentText] = useState('')
     const auth = useContext(authContext)
     const navigate = useNavigate()
@@ -176,12 +176,21 @@ function InstagramCard({ post, setFeed, feed }) {
           <p className="ml-2">{post.status}</p>
         </div>
         <div className="w-100 text-left">
-          <p className="text-gray-400 cursor-pointer" onClick={() => navigate(`/post/${post._id}`)}>View All Comments</p>
+          {
+            !showAllComments && <p className="text-gray-400 cursor-pointer" onClick={() => navigate(`/post/${post._id}`)}>View All Comments</p>
+          }
           <div className="flex-row">
-            {post.comments.length !== 0 &&
-              post.comments.slice().map((comment) => {
+            {showAllComments ? post.comments.length !== 0 &&
+              post.comments.map((comment) => {
+                return <CommentsList comment={comment} />;
+              }) : post.comments.length !== 0 &&
+              post.comments.slice(0,3).map((comment) => {
                 return <CommentsList comment={comment} />;
               })}
+            {/* {post.comments.length !== 0 &&
+              post.comments.slice(0,3).map((comment) => {
+                return <CommentsList comment={comment} />;
+              })} */}
           </div>
         </div>
 
