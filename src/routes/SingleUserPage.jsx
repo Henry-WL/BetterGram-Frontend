@@ -2,6 +2,8 @@ import React, { useContext, useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import authContext from '../context/auth-context'
 import SinglePost from '../components/SinglePost'
+import InstagramCard from '../components/InstagramCard'
+import UserProfilePost from '../components/UserProfilePost'
 
 function SingleUserPage() {
     const [user, setUser] = useState({})
@@ -232,7 +234,8 @@ function SingleUserPage() {
                 return (
                     <div className='m-2'>
 
-                        <SinglePost post={post} setFeed={setFeed} feed={feed}/>
+                        {/* <InstagramCard post={post} setFeed={setFeed} feed={feed} showAllComments={false}/> */}
+                        <UserProfilePost post={post}/>
                     </div>
                 )
             })}

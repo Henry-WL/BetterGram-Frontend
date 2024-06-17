@@ -208,6 +208,7 @@ function InstagramCard({ post, setFeed, feed, showAllComments }) {
           {/* </div> */}
         </div>
       </div>
+      
     </div>
   );
 }
