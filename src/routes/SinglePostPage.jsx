@@ -32,9 +32,9 @@ function SinglePostPage() {
 
 
   return (
-    <div>
+    <div className='flex justify-center'>
         {isLoading && <p>Loading...</p>}
-        SinglePostPage
+
 
         {!isLoading && feed.map((post) => {
                 return (

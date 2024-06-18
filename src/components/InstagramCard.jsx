@@ -122,7 +122,7 @@ function InstagramCard({ post, setFeed, feed, showAllComments }) {
 
  
   return (
-    <div className="shadow-xl w-4/5 rounded-lg my-6">
+    <div className="shadow-xl sm:w-4/5 rounded-lg my-6">
       <div className="flex mx-6 mb-2 justify-between">
         <div className="flex">
           <img

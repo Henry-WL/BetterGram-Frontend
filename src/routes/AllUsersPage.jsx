@@ -27,12 +27,12 @@ function AllUsersPage() {
     fetchUsers();
   }, []);
 
-  const followUserHandler = async (uid, e) => {
-    e.currentTarget.disabled = true;
+  const followUserHandler = async (uid, following) => {
     console.log(uid)
     console.log('click on frontend')
     
-    const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}/users/follow/${uid}`, {
+    if (following) {
+      const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}/users/unfollow/${uid}`, {
         method: "POST",
         headers: {
             Accept: "application/json",
@@ -47,6 +47,49 @@ function AllUsersPage() {
             // loggedInUser: authuid
           }),
     })
+
+      const data = await response.json()
+      console.log(data)
+
+    
+      //   setFeed([data.updatedPost])
+        const updatedUsers = users.map((user) => {
+          return user._id === uid ? {...data.doc} : user
+        })
+        
+        console.log(updatedUsers, 'updated Feed')
+        //   console.log('first', postId)
+          setUsers(updatedUsers)
+    } else {
+
+      const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}/users/follow/${uid}`, {
+          method: "POST",
+          headers: {
+              Accept: "application/json",
+              "Content-Type": "application/json",
+              // Authorization: "Bearer " + auth.token,
+            },
+            body: JSON.stringify({
+              loggedInUser: auth.userId,
+              // loggedInUserUsername,
+              // addedUser: uid,
+              // addedUserUsername,
+              // loggedInUser: authuid
+            }),
+      })
+
+      const data = await response.json()
+      console.log(data)
+
+          //   setFeed([data.updatedPost])
+          const updatedUsers = users.map((user) => {
+            return user._id === uid ? {...data.doc} : user
+          })
+          
+          console.log(updatedUsers, 'updated Feed')
+          //   console.log('first', postId)
+            setUsers(updatedUsers)
+    }
   }
 
   const userIDObj = {_id: auth.userId}
@@ -58,6 +101,8 @@ function AllUsersPage() {
       <div className="flex flex-wrap gap-2">
         {!isLoading &&
           users.map((user) => {
+            const following = user.followers.some(follower => follower._id === auth.userId)
+            // console.log(following, 'following')
             return (
               <div className="card w-96 bg-base-100 shadow-xl">
                 <figure>
@@ -75,9 +120,9 @@ function AllUsersPage() {
 
                   {/* <p>If a dog chews shoes whose shoes does he choose?</p> */}
                   <button className="btn btn-primary" onClick={() => navigate(`/user/${user._id}`)}>Go to page</button>
-                  {console.log(user.followers.includes({_id: auth.userId}, 0))}
-                  {user.followers.some(follower => follower._id === auth.userId) && <p>INSIDE</p>}
-                    <button className="btn btn-primary" disabled={user.followers.some(follower => follower._id === auth.userId)} onClick={(e) => followUserHandler(user._id, e)}>Follow</button>
+                  {/* {console.log(user.followers.includes({_id: auth.userId}, 0))} */}
+                  {/* {user.followers.some(follower => follower._id === auth.userId) && <p>INSIDE</p>} */}
+                    <button className="btn btn-primary"  onClick={() => followUserHandler(user._id, following)}>{following ? 'Unfollow' : 'Follow'}</button>
                 
                 </div>
               </div>
