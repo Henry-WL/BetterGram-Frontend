@@ -5,8 +5,10 @@ function CommentsList({ comment }) {
   const [showMore, setShowMore] = useState(false);
 
   return (
-    <div className="flex">
-      <h2 className="font-bold">{comment._id.username}</h2>
+    <div className="flex p-2">
+        {/* user image will go here */}
+        <img src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg" className="h-8 w-8 rounded-full"/>
+      <h2 className="ml-2 font-bold">{comment._id.username}</h2>
       <p className="ml-1">{comment.text}</p>
       {/* {showMore ? comment.text : `${comment.text.substring(0,20)}`}
               <br/>

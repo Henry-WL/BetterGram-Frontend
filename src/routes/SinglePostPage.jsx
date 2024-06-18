@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from 'react'
 import authContext from '../context/auth-context'
 import { useParams } from 'react-router-dom'
 import InstagramCard from '../components/InstagramCard'
+import SinglePost from '../components/SinglePost'
 
 function SinglePostPage() {
     const [isLoading, setIsLoading] = useState(true)
@@ -38,10 +39,10 @@ function SinglePostPage() {
 
         {!isLoading && feed.map((post) => {
                 return (
-                    // <SinglePost post={post} setFeed={setFeed} feed={feed}/>
+                    <SinglePost post={post} setFeed={setFeed} feed={feed}/>
                     
                     
-                    <InstagramCard post={post} setFeed={setFeed} feed={feed} showAllComments={true}/>
+                    // <InstagramCard post={post} setFeed={setFeed} feed={feed} showAllComments={true}/>
                 )
             })}
         </div>
