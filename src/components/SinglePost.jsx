@@ -127,7 +127,7 @@ function SinglePost({ post, setFeed, feed, showAllComments }) {
   };
 
   return (
-    <div className="shadow-xl rounded-xl my-6 flex">
+    <div className="pt-4 flex flex-col sm:flex-row">
       <div className="p-10 bg-blue-200 rounded-l-xl">
         <img
           src="https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.jpg"
@@ -136,7 +136,7 @@ function SinglePost({ post, setFeed, feed, showAllComments }) {
         />
       </div>
 
-      <div className="flex-col mx-6 mb-2 mt-4 justify-between w-2/4">
+      <div className="flex-col mx-6 mb-2 mt-4 justify-between sm:w-2/4">
         <div className="flex gap-8 w-full justify-center">
           <img
             src="https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.jpg"
@@ -163,7 +163,7 @@ function SinglePost({ post, setFeed, feed, showAllComments }) {
             post.comments.map((comment) => {
               return (
                 <div className="overflow-auto">
-                  <CommentsList comment={comment} />
+                  <CommentsList comment={comment} showAllComments={true} />
                 </div>
               );
             })}

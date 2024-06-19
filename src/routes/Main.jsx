@@ -44,7 +44,7 @@ function Main() {
         {isLoading && <p>Loading...</p>}
 
 
-        <div className='sm:w-4/6 flex flex-wrap gap-2 m-4'>
+        <div className='sm:w-4/6 flex flex-wrap justify-center content-center gap-2 m-1'>
             {!isLoading && feed.map((post) => {
                 return (
                     // <SinglePost post={post} setFeed={setFeed} feed={feed}/>

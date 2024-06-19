@@ -96,9 +96,8 @@ function AllUsersPage() {
 
   return (
     <div>
-      All users....
       {isLoading && <p>Loading...</p>}
-      <div className="flex flex-wrap gap-2">
+      <div className="flex flex-wrap gap-2 pt-4 justify-center">
         {!isLoading &&
           users.map((user) => {
             const following = user.followers.some(follower => follower._id === auth.userId)
