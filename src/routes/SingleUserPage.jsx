@@ -123,18 +123,20 @@ function SingleUserPage() {
                   </div>
                 </figure>
                 <div className="card-body">
+                {auth.userId !== uid && (
                   <div className="flex gap-4 justify-center items-center content-center">
-                    {auth.userId !== uid && (
+                 
                       <button
                         className="font-bold px-8 py-4 rounded-3xl drop-shadow-md shadow-md"
                         onClick={() => followUserHandler(user._id)}
                       >
                         Follow
                       </button>
-                    )}
+                  
 
                     <CiPaperplane className="text-3xl mr-2 stroke-black stroke-[0.5px] hover:stroke-[0.75px]" />
                   </div>
+                )}
 
                   <div className="flex flex-col gap-4">
                     <div className="pt-4">
@@ -241,9 +243,8 @@ function SingleUserPage() {
       </div>
 
       <div>
-        SingleUserFeed for {user.username}
         {isLoading && <p>Loading...</p>}
-        <div className="flex flex-wrap">
+        <div className="flex flex-wrap justify-center">
           {!isLoading &&
             feed.map((post) => {
               return (

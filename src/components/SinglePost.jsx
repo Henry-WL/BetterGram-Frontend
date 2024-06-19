@@ -139,7 +139,7 @@ function SinglePost({ post, setFeed, feed, showAllComments }) {
       <div className="flex-col mx-6 mb-2 mt-4 justify-between sm:w-2/4">
         <div className="flex gap-8 w-full justify-center">
           <img
-            src="https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.jpg"
+            src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg"
             alt="Shoes"
             className="h-20 w-20 rounded-full shadow-md "
           />
