@@ -127,8 +127,8 @@ function SinglePost({ post, setFeed, feed, showAllComments }) {
   };
 
   return (
-    <div className="shadow-xl rounded-lg my-6 flex">
-      <div className="">
+    <div className="shadow-xl rounded-xl my-6 flex">
+      <div className="p-10 bg-blue-200 rounded-l-xl">
         <img
           src="https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.jpg"
           alt="Shoes"
@@ -158,7 +158,7 @@ function SinglePost({ post, setFeed, feed, showAllComments }) {
           </p>
         </div>
 
-        <div className="flex-row mt-2 border-t border-gray-300 overflow-auto max-h-80">
+        <div className="flex-row mt-2 pt-2 border-t border-gray-300 overflow-auto max-h-80">
           {post.comments.length !== 0 &&
             post.comments.map((comment) => {
               return (
@@ -168,7 +168,7 @@ function SinglePost({ post, setFeed, feed, showAllComments }) {
               );
             })}
         </div>
-        <div className="pl-5 flex justify-between p-2">
+        <div className="flex justify-between p-2">
           <div className="flex">
             <HiOutlineHeart
               className={`text-3xl mr-2 stroke-black hover:stroke-red-500 hover:fill-red-500 stroke-[1.5px] ${
