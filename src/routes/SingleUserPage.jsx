@@ -230,7 +230,7 @@ function SingleUserPage() {
                         </label>
 
                         <button className="btn btn-primary m-2" type="submit">
-                          Update
+                          Save
                         </button>
                       </div>
                     </form>
