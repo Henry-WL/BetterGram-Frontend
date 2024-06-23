@@ -7,6 +7,7 @@ function UserProfilePost({ post }) {
   return (
     <div className="bg-green-300 rounded-lg shadow-lg cursor-pointer" onClick={() => navigate(`/post/${post._id}`)}>
         {/* change bg to none just have image with no padding */}
+        {/* flex center or padding so all aligned on full screen */}
       <img
         src="https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.jpg"
         // src={img.url}
