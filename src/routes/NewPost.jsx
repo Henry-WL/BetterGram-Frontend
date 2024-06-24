@@ -1,15 +1,33 @@
 import React, { useContext, useState } from "react";
 import authContext from "../context/auth-context";
+import axios from 'axios'
 
 function NewPost() {
-    const [text, setText] = useState('')
-    const auth = useContext(authContext)
+  const [text, setText] = useState("");
+  const [image, setImage] = useState();
+  const auth = useContext(authContext);
 
-    const submitStatusHandler = async (e) => {
-        e.preventDefault()
+  const submitStatusHandler = async (e) => {
+    e.preventDefault();
 
-        console.log('submit status')
+    console.log("submit status");
 
+    const formData = new FormData();
+    formData.append("image", image);
+
+    const config = { headers: { "Content-Type": "multipart/form-data" } };
+
+    try {
+      const data = await axios.post(
+        `${import.meta.env.VITE_BACKEND_URL}/posts/upload`,
+        formData,
+        config
+      );
+      console.log(data);
+    } catch (err) {
+      console.log(err);
+    }
+    /*
         const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}/users/post/${auth.userId}`, {
             method: "POST",
             headers: {
@@ -28,12 +46,10 @@ function NewPost() {
           });
 
           setText('')
+            */
 
-
-        // body, uid, text
-    }
-
-
+    // body, uid, text
+  };
 
   return (
     <>
@@ -41,8 +57,11 @@ function NewPost() {
 
       <div className="w-full flex justify-center">
         <div class="w-full max-w-xs">
-          <form class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 h-96 w-96" onSubmit={submitStatusHandler}>
-            <div class="mb-4">
+          <form
+            class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 h-full w-96"
+            onSubmit={submitStatusHandler}
+          >
+            {/* <div class="mb-4">
               <label
                 class="block text-gray-700 text-sm font-bold mb-2"
                 for="username"
@@ -57,8 +76,17 @@ function NewPost() {
                 onChange={(e) => setText(e.target.value)}
                 value={text}
               />
-            </div>
+            </div> */}
 
+
+
+            <input
+              type="file"
+              className="file-input file-input-bordered file-input-success w-full max-w-xs"
+              onChange={e => setImage(e.target.files[0])} 
+              accept="image/*"
+
+            />
             <div class="flex items-center justify-between">
               <button
                 class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
