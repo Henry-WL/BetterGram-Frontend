@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 function NewPost() {
   const [text, setText] = useState("");
   const [image, setImage] = useState();
+  const [preview, setPreview] = useState()
   const auth = useContext(authContext);
   const navigate = useNavigate()
 
@@ -56,10 +57,13 @@ function NewPost() {
     // body, uid, text
   };
 
+  const handleImageSelect = (e) => {
+    // e => setImage(e.target.files[0])
+    setImage(e.target.files[0])
+    setPreview(URL.createObjectURL(e.target.files[0]))
+  }
   return (
     <>
-      <div className="m-4">NewPost</div>
-
       <div className="w-full flex justify-center">
         <div class="w-full max-w-xs">
           <form
@@ -71,13 +75,13 @@ function NewPost() {
                 class="block text-gray-700 text-sm font-bold mb-2"
                 for="username"
               >
-                Status
+                Caption
               </label>
-              <textarea
-                class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline h-60"
+              <input
+                class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                 id="username"
                 type="text"
-                placeholder="Status..."
+                placeholder="Caption..."
                 onChange={(e) => setText(e.target.value)}
                 value={text}
               />
@@ -88,18 +92,24 @@ function NewPost() {
             <input
               type="file"
               className="file-input file-input-bordered file-input-success w-full max-w-xs"
-              onChange={e => setImage(e.target.files[0])} 
+              onChange={handleImageSelect} 
               accept="image/*"
 
             />
             <div class="flex items-center justify-between">
-              <button
+           
+            </div>
+
+            <div className="py-2">
+                <img className="rounded-md" src={preview}/>
+            </div>
+
+            <button
                 class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
                 type="submit"
               >
                 Post
               </button>
-            </div>
           </form>
         </div>
       </div>
