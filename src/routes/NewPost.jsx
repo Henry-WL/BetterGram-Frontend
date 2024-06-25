@@ -1,11 +1,13 @@
 import React, { useContext, useState } from "react";
 import authContext from "../context/auth-context";
 import axios from 'axios'
+import { useNavigate } from "react-router-dom";
 
 function NewPost() {
   const [text, setText] = useState("");
   const [image, setImage] = useState();
   const auth = useContext(authContext);
+  const navigate = useNavigate()
 
   const submitStatusHandler = async (e) => {
     e.preventDefault();
@@ -28,6 +30,8 @@ function NewPost() {
     } catch (err) {
       console.log(err);
     }
+
+    navigate("/")
     /*
         const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}/users/post/${auth.userId}`, {
             method: "POST",
