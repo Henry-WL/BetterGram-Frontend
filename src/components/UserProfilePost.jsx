@@ -9,8 +9,8 @@ function UserProfilePost({ post }) {
         {/* change bg to none just have image with no padding */}
         {/* flex center or padding so all aligned on full screen */}
       <img
-        src="https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.jpg"
-        // src={img.url}
+        // src="https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.jpg"
+        src={post.imageURL}
         alt="Shoes"
         className="w-96 py-16 px-10 shadow-sm"
       />

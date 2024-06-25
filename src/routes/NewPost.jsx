@@ -14,12 +14,13 @@ function NewPost() {
 
     const formData = new FormData();
     formData.append("image", image);
+    formData.append("text", text)
 
     const config = { headers: { "Content-Type": "multipart/form-data" } };
 
     try {
       const data = await axios.post(
-        `${import.meta.env.VITE_BACKEND_URL}/posts/upload`,
+        `${import.meta.env.VITE_BACKEND_URL}/posts/post/${auth.userId}`,
         formData,
         config
       );
@@ -61,7 +62,7 @@ function NewPost() {
             class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 h-full w-96"
             onSubmit={submitStatusHandler}
           >
-            {/* <div class="mb-4">
+            <div class="mb-4">
               <label
                 class="block text-gray-700 text-sm font-bold mb-2"
                 for="username"
@@ -76,7 +77,7 @@ function NewPost() {
                 onChange={(e) => setText(e.target.value)}
                 value={text}
               />
-            </div> */}
+            </div>
 
 
 

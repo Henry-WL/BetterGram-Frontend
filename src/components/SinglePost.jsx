@@ -130,7 +130,7 @@ function SinglePost({ post, setFeed, feed, showAllComments }) {
     <div className="pt-4 flex flex-col sm:flex-row">
       <div className="p-10 bg-blue-200 rounded-l-xl">
         <img
-          src="https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.jpg"
+          src={post.imageURL}
           alt="Shoes"
           className="w-full h-full"
         />
@@ -153,8 +153,7 @@ function SinglePost({ post, setFeed, feed, showAllComments }) {
 
         <div className="mt-4">
           <p className="text-gray-400 mx-8">
-            Caption..... This is an example caption!!! Here you can write great
-            things about your post to annoy people! and use hashtags #lol
+            {post.status}
           </p>
         </div>
 

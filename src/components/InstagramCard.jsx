@@ -127,6 +127,7 @@ function InstagramCard({ post, setFeed, feed, showAllComments }) {
         <div className="flex">
           <img
             src="https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.jpg"
+            // change src later to use avatar URL
             alt="Shoes"
             className="h-12 w-12 rounded-full"
           />
@@ -142,7 +143,7 @@ function InstagramCard({ post, setFeed, feed, showAllComments }) {
       </div>
       <div className="">
         <img
-          src="https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.jpg"
+          src={post.imageURL}
           alt="Shoes"
           className=""
         />
