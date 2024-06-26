@@ -127,11 +127,11 @@ function SinglePost({ post, setFeed, feed, showAllComments }) {
   };
 
   return (
-    <div className="pt-4 flex flex-col sm:flex-row">
-      <div className="p-10 bg-blue-200 rounded-l-xl">
+    <div className="shadow-xl pt-4 flex flex-col sm:flex-row">
+      <div className="p-2">
         <img
           src={post.imageURL}
-          alt="Shoes"
+          alt="User Avatar"
           className="w-full h-full"
         />
       </div>
@@ -139,9 +139,9 @@ function SinglePost({ post, setFeed, feed, showAllComments }) {
       <div className="flex-col mx-6 mb-2 mt-4 justify-between sm:w-2/4">
         <div className="flex gap-8 w-full justify-center">
           <img
-            src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg"
+            src={post.userID.avatarURL}
             alt="Shoes"
-            className="h-20 w-20 rounded-full shadow-md "
+            className="h-16 w-16 object-cover rounded-full shadow-md "
           />
           <div className="flex-col justify-center content-center inline-block">
             <p className="text-lg font-bold text-left">

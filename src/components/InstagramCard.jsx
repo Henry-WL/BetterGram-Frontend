@@ -126,7 +126,7 @@ function InstagramCard({ post, setFeed, feed, showAllComments }) {
       <div className="flex mx-6 mb-2 justify-between">
         <div className="flex">
           <img
-            src="https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.jpg"
+            src={post.userID.avatarURL}
             // change src later to use avatar URL
             alt="Shoes"
             className="h-12 w-12 rounded-full"

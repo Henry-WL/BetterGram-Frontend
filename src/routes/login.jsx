@@ -2,52 +2,83 @@ import React, { useContext, useState } from "react";
 import authContext from "../context/auth-context";
 import { useNavigate } from "react-router-dom";
 // import { useNavigate } from "react-router-dom";
+import axios from 'axios'
+
 
 function login() {
   const [isSignup, setIsSignup] = useState(false);
   const [email, setEmail] = useState("");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [avatar, setAvatar] = useState();
   const { login, setIsLoggedIn } = useContext(authContext);
 
   const navigate = useNavigate();
 
-const auth = useContext(authContext)
+  const auth = useContext(authContext);
 
-  console.log(auth)
+  console.log(auth);
 
   const login_signupHandler = async (event) => {
     event.preventDefault();
 
     let response;
     if (isSignup) {
-        console.log(email, username, password)
-      response = await fetch(`${import.meta.env.VITE_BACKEND_URL}/users/signup`, {
-        method: "POST",
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          email: email,
-          username: username,
-          password: password,
-        }),
-      });
+
+        const formData = new FormData();
+        formData.append("email", email);
+        formData.append("username", username);
+        formData.append("password", password);
+        formData.append("image", avatar);
+    
+        const config = { headers: { "Content-Type": "multipart/form-data" } };
+    
+        try {
+          const data = await axios.post(
+            `${import.meta.env.VITE_BACKEND_URL}/users/signup`,
+            formData,
+            config
+          );
+          console.log(data);
+        } catch (err) {
+          console.log(err);
+        }
+
+
+
+    //   console.log(email, username, password);
+    //   response = await fetch(
+    //     `${import.meta.env.VITE_BACKEND_URL}/users/signup`,
+    //     {
+    //       method: "POST",
+    //       headers: {
+    //         Accept: "application/json",
+    //         "Content-Type": "application/json",
+    //       },
+    //       body: JSON.stringify({
+    //         email: email,
+    //         username: username,
+    //         password: password,
+    //       }),
+    //     }
+    //   );
 
       // auth.login('user')
     } else {
-      response = await fetch(`${import.meta.env.VITE_BACKEND_URL}/users/login`, {
-        method: "POST",
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          email: email,
-          password: password,
-        }),
-      });
+      response = await fetch(
+        `${import.meta.env.VITE_BACKEND_URL}/users/login`,
+        {
+          method: "POST",
+          headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            email: email,
+            password: password,
+          }),
+        }
+      );
 
       const data = await response.json();
 
@@ -130,6 +161,21 @@ const auth = useContext(authContext)
                     className="block w-full rounded-md border-0 p-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                     onChange={(e) => setUsername(e.target.value)}
                     value={username}
+                  />
+                </div>
+
+                <div className="mt-2 flex flex-col">
+                  <label
+                    for="Avatar"
+                    className="text-left block text-sm font-medium leading-6 text-gray-900 w-full"
+                  >
+                    Avatar
+                  </label>
+                  <input
+                    type="file"
+                    className="file-input file-input-ghost max-w-xs "
+                    onChange={(e) => setAvatar(e.target.files[0])}
+                    accept="image/*"
                   />
                 </div>
               </div>

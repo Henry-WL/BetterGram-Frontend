@@ -116,7 +116,7 @@ function SingleUserPage() {
                 <figure className="">
                   <div className="w-full flex justify-center">
                     <img
-                      src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg"
+                      src={user.avatarURL}
                       alt="Shoes"
                       className="rounded-full h-64"
                     />

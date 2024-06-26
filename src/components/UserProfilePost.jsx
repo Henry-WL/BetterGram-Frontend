@@ -5,14 +5,14 @@ function UserProfilePost({ post }) {
     console.log(post)
     const navigate = useNavigate()
   return (
-    <div className="bg-green-300 rounded-lg shadow-lg cursor-pointer" onClick={() => navigate(`/post/${post._id}`)}>
+    <div className="shadow-xl rounded-lg cursor-pointer" onClick={() => navigate(`/post/${post._id}`)}>
         {/* change bg to none just have image with no padding */}
         {/* flex center or padding so all aligned on full screen */}
       <img
         // src="https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.jpg"
         src={post.imageURL}
         alt="Shoes"
-        className="w-96 py-16 px-10 shadow-sm"
+        className="w-96 h-80 object-contain rounded-lg shadow-sm"
       />
     </div>
   );
