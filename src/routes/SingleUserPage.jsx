@@ -1,10 +1,11 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import { useParams } from "react-router-dom";
 import authContext from "../context/auth-context";
 import SinglePost from "../components/SinglePost";
 import InstagramCard from "../components/InstagramCard";
 import UserProfilePost from "../components/UserProfilePost";
 import { CiPaperplane } from "react-icons/ci";
+import axios from "axios";
 
 function SingleUserPage() {
   const [user, setUser] = useState({});
@@ -14,6 +15,7 @@ function SingleUserPage() {
   const [email, setEmail] = useState("");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [avatar, setAvatar] = useState();
   const { uid } = useParams();
   const auth = useContext(authContext);
 
@@ -30,6 +32,8 @@ function SingleUserPage() {
 
     setIsLoading(false);
   };
+
+  const inputFile = useRef(null)
 
   useEffect(() => {
     const fetchSingleUser = async () => {
@@ -54,40 +58,63 @@ function SingleUserPage() {
   const editProfileHandler = async (e) => {
     e.preventDefault();
     console.log("edit profile handler");
+    const formData = new FormData();
+    formData.append("email", email);
+    formData.append("username", username);
+    formData.append("image", avatar);
+    formData.append("password", password);
+
+    const config = { headers: { "Content-Type": "multipart/form-data" } };
+
+
+      const response = await axios.patch(
+        `${import.meta.env.VITE_BACKEND_URL}/users/user/updateUserProfile/${
+          auth.userId
+        }`,
+        formData,
+        config
+      );
+    //   console.log(response);
+  
+
+
     // http://localhost:3000/api/users/user/updateUserProfile/1
-    const response = await fetch(
-      `${import.meta.env.VITE_BACKEND_URL}/users/user/updateUserProfile/${
-        auth.userId
-      }`,
-      {
-        method: "PATCH",
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
-          //   Authorization: "Bearer " + auth.token,
-        },
-        body: JSON.stringify({
-          // sendinguserId: auth.userId,
-          email: email,
-          username: username,
-          password: password,
-        }),
-      }
-    );
+    // const response = await fetch(
+    //   `${import.meta.env.VITE_BACKEND_URL}/users/user/updateUserProfile/${
+    //     auth.userId
+    //   }`,
+    //   {
+    //     method: "PATCH",
+    //     headers: {
+    //       Accept: "application/json",
+    //       "Content-Type": "application/json",
+    //       //   Authorization: "Bearer " + auth.token,
+    //     },
+    //     body: JSON.stringify({
+    //       // sendinguserId: auth.userId,
+    //       email: email,
+    //       username: username,
+    //       password: password,
+    //     }),
+    //   }
+    // );
     // setIsLoading(true);
     setEmail("");
     setPassword("");
+    inputFile.current.value = "";
+    inputFile.current.type = "text";
+    inputFile.current.type = "file";
     setUsername("");
 
     //   if (username !== "") {
     //     auth.setUsername(username);
     //   }
+    console.log(response, 'response')
+    // const data = await response.json();
+    // console.log(data, 'data');
 
-    const data = await response.json();
-
-    console.log(data);
-    setUser(data.updatedUser);
-    fetchSingleUserFeed();
+    setUser(response.data.updatedUser);
+    // fetchSingleUserFeed();
   };
 
   return (
@@ -123,20 +150,18 @@ function SingleUserPage() {
                   </div>
                 </figure>
                 <div className="card-body">
-                {auth.userId !== uid && (
-                  <div className="flex gap-4 justify-center items-center content-center">
-                 
+                  {auth.userId !== uid && (
+                    <div className="flex gap-4 justify-center items-center content-center">
                       <button
                         className="font-bold px-8 py-4 rounded-3xl drop-shadow-md shadow-md"
                         onClick={() => followUserHandler(user._id)}
                       >
                         Follow
                       </button>
-                  
 
-                    <CiPaperplane className="text-3xl mr-2 stroke-black stroke-[0.5px] hover:stroke-[0.75px]" />
-                  </div>
-                )}
+                      <CiPaperplane className="text-3xl mr-2 stroke-black stroke-[0.5px] hover:stroke-[0.75px]" />
+                    </div>
+                  )}
 
                   <div className="flex flex-col gap-4">
                     <div className="pt-4">
@@ -148,13 +173,21 @@ function SingleUserPage() {
 
                     <div className="flex justify-center gap-8">
                       <div>
-                        <h2 className="font-bold text-xl">{user.following.length}</h2>
-                        <h3 className="font-medium text-gray-400 text-lg">Following</h3>
+                        <h2 className="font-bold text-xl">
+                          {user.following.length}
+                        </h2>
+                        <h3 className="font-medium text-gray-400 text-lg">
+                          Following
+                        </h3>
                       </div>
 
                       <div>
-                        <h2 className="font-bold text-xl">{user.followers.length}</h2>
-                        <h3 className="font-medium text-gray-400 text-lg">Followers</h3>
+                        <h2 className="font-bold text-xl">
+                          {user.followers.length}
+                        </h2>
+                        <h3 className="font-medium text-gray-400 text-lg">
+                          Followers
+                        </h3>
                       </div>
                     </div>
                   </div>
@@ -208,6 +241,34 @@ function SingleUserPage() {
                             onChange={(e) => setUsername(e.target.value)}
                           />
                         </label>
+
+                        <label className="input input-bordered flex items-center gap-2 mt-1">
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            viewBox="0 0 16 16"
+                            fill="currentColor"
+                            className="w-4 h-4 opacity-70"
+                          >
+                            <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6ZM12.735 14c.618 0 1.093-.561.872-1.139a6.002 6.002 0 0 0-11.215 0c-.22.578.254 1.139.872 1.139h9.47Z" />
+                          </svg>
+                          {/* <input
+                            type="file"
+                            className="grow"
+                            placeholder={user.username}
+                            value={username}
+                            onChange={(e) => setAvatar(e.target.files[0])}
+                          /> */}
+                           <input
+              type="file"
+              className="file-input file-input-bordered file-input-success w-full max-w-xs"
+            //   value={avatar}
+            ref = {inputFile}
+              onChange={(e) => setAvatar(e.target.files[0])}
+              accept="image/*"
+
+            />
+                        </label>
+
                         <label className="input input-bordered flex items-center gap-2 mt-1">
                           <svg
                             xmlns="http://www.w3.org/2000/svg"
