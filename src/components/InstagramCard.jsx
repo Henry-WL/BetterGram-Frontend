@@ -157,7 +157,7 @@ function InstagramCard({ post, setFeed, feed, showAllComments }) {
 
           {/* <CiHeart className="text-3xl mr-2 stroke-black fill-blue-500 hover:stroke-red-500 text-red-500 stroke-[0.5px]"/> */}
           {/* <FaRegComment className="text-3xl"/> */}
-          <CiChat1 className="cursor-pointer text-3xl mr-2 stroke-black stroke-[0.5px] hover:stroke-[1px]" />
+          <CiChat1 className="cursor-pointer text-3xl mr-2 stroke-black stroke-[0.5px] hover:stroke-[1px]" onClick={() => navigate(`/post/${post._id}`)} />
 
           <CiPaperplane className="cursor-pointer text-3xl mr-2 stroke-black stroke-[0.5px] hover:stroke-[0.75px]" />
         </div>
@@ -181,10 +181,7 @@ function InstagramCard({ post, setFeed, feed, showAllComments }) {
             !showAllComments && <p className="text-gray-400 cursor-pointer" onClick={() => navigate(`/post/${post._id}`)}>View All Comments</p>
           }
           <div className="flex-row">
-            {showAllComments ? post.comments.length !== 0 &&
-              post.comments.map((comment) => {
-                return <CommentsList comment={comment} />;
-              }) : post.comments.length !== 0 &&
+            {post.comments.length !== 0 &&
               post.comments.slice(0,3).map((comment) => {
                 return <CommentsList comment={comment} />;
               })}

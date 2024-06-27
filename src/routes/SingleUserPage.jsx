@@ -33,7 +33,7 @@ function SingleUserPage() {
     setIsLoading(false);
   };
 
-  const inputFile = useRef(null)
+  const inputFile = useRef(null);
 
   useEffect(() => {
     const fetchSingleUser = async () => {
@@ -66,17 +66,14 @@ function SingleUserPage() {
 
     const config = { headers: { "Content-Type": "multipart/form-data" } };
 
-
-      const response = await axios.patch(
-        `${import.meta.env.VITE_BACKEND_URL}/users/user/updateUserProfile/${
-          auth.userId
-        }`,
-        formData,
-        config
-      );
+    const response = await axios.patch(
+      `${import.meta.env.VITE_BACKEND_URL}/users/user/updateUserProfile/${
+        auth.userId
+      }`,
+      formData,
+      config
+    );
     //   console.log(response);
-  
-
 
     // http://localhost:3000/api/users/user/updateUserProfile/1
     // const response = await fetch(
@@ -109,7 +106,7 @@ function SingleUserPage() {
     //   if (username !== "") {
     //     auth.setUsername(username);
     //   }
-    console.log(response, 'response')
+    console.log(response, "response");
     // const data = await response.json();
     // console.log(data, 'data');
 
@@ -145,7 +142,7 @@ function SingleUserPage() {
                     <img
                       src={user.avatarURL}
                       alt="Shoes"
-                      className="rounded-full h-64"
+                      className="rounded-full h-32"
                     />
                   </div>
                 </figure>
@@ -258,15 +255,14 @@ function SingleUserPage() {
                             value={username}
                             onChange={(e) => setAvatar(e.target.files[0])}
                           /> */}
-                           <input
-              type="file"
-              className="file-input file-input-bordered file-input-success w-full max-w-xs"
-            //   value={avatar}
-            ref = {inputFile}
-              onChange={(e) => setAvatar(e.target.files[0])}
-              accept="image/*"
-
-            />
+                          <input
+                            type="file"
+                            className="file-input file-input-bordered file-input-ghost w-full max-w-xs"
+                            //   value={avatar}
+                            ref={inputFile}
+                            onChange={(e) => setAvatar(e.target.files[0])}
+                            accept="image/*"
+                          />
                         </label>
 
                         <label className="input input-bordered flex items-center gap-2 mt-1">

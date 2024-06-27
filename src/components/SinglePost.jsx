@@ -40,13 +40,13 @@ function SinglePost({ post, setFeed, feed, showAllComments }) {
 
     const data = await response.json();
 
-    console.log(data);
+    console.log(data, 'comment submit');
 
     const updatedFeed = feed.map((post) => {
       return post._id === postID ? { ...data.updatedPost } : post;
     });
 
-    console.log(updatedFeed);
+    console.log(updatedFeed, 'updated FEED!');
 
     setFeed(updatedFeed);
   };

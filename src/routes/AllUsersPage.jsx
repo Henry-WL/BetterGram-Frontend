@@ -106,8 +106,9 @@ function AllUsersPage() {
               <div className="card w-96 bg-base-100 shadow-xl">
                 <figure>
                   <img
-                    src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg"
-                    alt="Shoes"
+                    src={user.avatarURL}
+                    alt={user.username}
+                    className="object-cover"
                   />
                 </figure>
                 <div className="card-body">
