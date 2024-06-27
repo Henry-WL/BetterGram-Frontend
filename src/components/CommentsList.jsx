@@ -3,7 +3,7 @@ import { format } from "date-fns";
 
 function CommentsList({ comment, showAllComments }) {
   const [showMore, setShowMore] = useState(false);
-
+console.log(comment)
   return (
     // if (showAllComments) {
     //     return (
@@ -20,8 +20,8 @@ function CommentsList({ comment, showAllComments }) {
       {showAllComments ? (
         <div className="flex p-2">
           <img
-            src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg"
-            className="h-8 w-8 rounded-full"
+            src={comment._id.avatarURL}
+            className="h-8 w-8 object-cover rounded-full"
           />
           <h2 className="ml-2 font-bold">{comment._id.username}</h2>
           <p className="ml-1">{comment.text}</p>

@@ -124,12 +124,12 @@ function InstagramCard({ post, setFeed, feed, showAllComments }) {
   return (
     <div className="shadow-xl sm:w-4/5 rounded-lg my-6">
       <div className="flex mx-6 mb-2 justify-between">
-        <div className="flex">
+        <div className="flex cursor-pointer" onClick={() => navigate(`/user/${post.userID._id}`)}>
           <img
             src={post.userID.avatarURL}
             // change src later to use avatar URL
             alt="Shoes"
-            className="h-12 w-12 rounded-full"
+            className="object-cover h-12 w-12 rounded-full"
           />
           <div className="ml-8 flex-col justify-center inline-block">
             <p className="text-l font-bold text-left">{post.userID.username}</p>
@@ -137,7 +137,7 @@ function InstagramCard({ post, setFeed, feed, showAllComments }) {
           </div>
         </div>
 
-        <div className="text-3xl flex-col content-center">
+        <div className="text-3xl flex-col content-center cursor-pointer">
           <IoIosMore />
         </div>
       </div>
@@ -151,19 +151,19 @@ function InstagramCard({ post, setFeed, feed, showAllComments }) {
       <div className="pl-5 flex justify-between p-2">
         <div className="flex">
           <HiOutlineHeart
-            className={`text-3xl mr-2 stroke-black hover:stroke-red-500 hover:fill-red-500 stroke-[1.5px] ${checkLiked() ? `fill-red-500 stroke-red-500` : ``}`}
+            className={`cursor-pointer text-3xl mr-2 stroke-black hover:stroke-red-500 hover:fill-red-500 stroke-[1.5px] ${checkLiked() ? `fill-red-500 stroke-red-500` : ``}`}
             onClick={() => likePostHandler(post._id)}
           />
 
           {/* <CiHeart className="text-3xl mr-2 stroke-black fill-blue-500 hover:stroke-red-500 text-red-500 stroke-[0.5px]"/> */}
           {/* <FaRegComment className="text-3xl"/> */}
-          <CiChat1 className="text-3xl mr-2 stroke-black stroke-[0.5px] hover:stroke-[1px]" />
+          <CiChat1 className="cursor-pointer text-3xl mr-2 stroke-black stroke-[0.5px] hover:stroke-[1px]" />
 
-          <CiPaperplane className="text-3xl mr-2 stroke-black stroke-[0.5px] hover:stroke-[0.75px]" />
+          <CiPaperplane className="cursor-pointer text-3xl mr-2 stroke-black stroke-[0.5px] hover:stroke-[0.75px]" />
         </div>
 
         <div>
-          <HiOutlineBookmark className="text-3xl mr-2 stroke-black hover:fill-gray-900 stroke-[1.5px]" />
+          <HiOutlineBookmark className="cursor-pointer text-3xl mr-2 stroke-black hover:fill-gray-900 stroke-[1.5px]" />
         </div>
       </div>
 
