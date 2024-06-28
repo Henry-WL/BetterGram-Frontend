@@ -67,7 +67,7 @@ function NewPost() {
       <div className="w-full flex justify-center">
         <div class="w-full max-w-xs">
           <form
-            class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 h-full w-96"
+            class="bg-white shadow-md rounded px-8 pt-10 mt-4 pb-8 mb-4 h-full w-full"
             onSubmit={submitStatusHandler}
           >
             <div class="mb-4">
@@ -91,7 +91,7 @@ function NewPost() {
 
             <input
               type="file"
-              className="file-input file-input-bordered file-input-success w-full max-w-xs"
+              className="file-input file-input-bordered file-input-ghost w-full max-w-xs"
               onChange={handleImageSelect} 
               accept="image/*"
 

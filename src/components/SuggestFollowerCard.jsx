@@ -79,7 +79,7 @@ function SuggestFollowerCard({ user }) {
     <div className="flex mx-6 mb-2 justify-between w-full">
       <div className="flex">
         <img
-          src="https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.jpg"
+          src={user.avatarURL}
           alt="Shoes"
           className="h-12 w-12 rounded-full cursor-pointer"
           onClick={() => navigate(`/user/${user._id}`)}
