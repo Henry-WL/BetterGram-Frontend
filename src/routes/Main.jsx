@@ -9,6 +9,7 @@ function Main() {
 
     const [feed, setFeed] = useState([])
     const [isLoading, setIsLoading] = useState(true)
+    const [user, setUser] = useState()
     // get feed for followed users posts
 
     const auth = useContext(authContext)
