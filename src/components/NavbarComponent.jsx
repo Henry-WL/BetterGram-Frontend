@@ -19,14 +19,14 @@ function NavbarComponent() {
         </div>
 
         <button
-          className="btn btn-success text-white"
+          className="btn btn-success text-white mr-2"
           onClick={() => navigate("/allusers")}
         >
-          AllUsers
+          All Users
         </button>
 
         <div className="flex-none">
-          <div className="dropdown dropdown-end">
+          {/* <div className="dropdown dropdown-end">
             <div
               tabIndex={0}
               role="button"
@@ -64,7 +64,7 @@ function NavbarComponent() {
                 </div>
               </div>
             </div>
-          </div>
+          </div> */}
           <div className="dropdown dropdown-end">
             <div
               tabIndex={0}
@@ -85,12 +85,9 @@ function NavbarComponent() {
               <li onClick={() => navigate(`/user/${auth.userId}`)}>
                 <a className="justify-between">
                   Profile
-                  <span className="badge">New</span>
                 </a>
               </li>
-              <li>
-                <a>Settings</a>
-              </li>
+           
 
               <li onClick={() => navigate("/newpost")}>
                 <a>NewPost</a>

@@ -67,7 +67,7 @@ function NewPost() {
       <div className="w-full flex justify-center">
         <div class="w-full max-w-xs">
           <form
-            class="bg-white shadow-md rounded px-8 pt-10 mt-4 pb-8 mb-4 h-full w-full"
+            class="bg-white shadow-md rounded px-8 pt-10 mt-4 pb-8 mb-4 h-full w-full sm:w-96"
             onSubmit={submitStatusHandler}
           >
             <div class="mb-4">
