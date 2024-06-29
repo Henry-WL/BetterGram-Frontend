@@ -139,6 +139,7 @@ function InstagramCard({ post, setFeed, feed, showAllComments }) {
 
         <div className="text-3xl flex-col content-center cursor-pointer">
           <IoIosMore />
+          {/* Add Delete here? */}
         </div>
       </div>
       <div className="">
