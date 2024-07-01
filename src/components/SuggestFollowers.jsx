@@ -66,7 +66,7 @@ function SuggestFollowers() {
         </div>
 
         {!isLoading &&
-          users.slice(0, 5).map((user) => {
+          users.filter(user => user._id !== auth.userId).slice(0, 5).map((user) => {
             return (
               <SuggestFollowerCard user={user} />
               //   <div

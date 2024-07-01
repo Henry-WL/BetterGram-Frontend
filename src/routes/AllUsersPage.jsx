@@ -108,7 +108,7 @@ function AllUsersPage() {
                   <img
                     src={user.avatarURL}
                     alt={user.username}
-                    className="object-cover min-h-72"
+                    className="object-cover h-72"
                   />
                 </figure>
                 <div className="card-body">

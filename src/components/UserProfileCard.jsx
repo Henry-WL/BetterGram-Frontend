@@ -4,6 +4,7 @@ import authContext from '../context/auth-context'
 
 function UserProfileCard() {
     const [user, setUser] = useState()
+    const [postCount, setPostCount] = useState()
     const [isLoading, setIsLoading] = useState(true)
     const auth = useContext(authContext)
     useEffect(() => {
@@ -14,9 +15,10 @@ function UserProfileCard() {
       
             const data = await response.json();
       
-            console.log(data);
+            console.log(data, 'uSEERRRRRRRR');
       
             setUser(data.foundUser);
+            setPostCount(data.postCount)
       
             setIsLoading(false);
           };
@@ -66,7 +68,7 @@ function UserProfileCard() {
                 <p className='text-gray-500 text-sm'>Followers</p>
             </div>
             <div className='m-1'>
-                <p className='font-bold'>4</p>
+                <p className='font-bold'>{postCount}</p>
                 <p className='text-gray-500 text-sm'>Posts</p>
             </div>
             <div className='m-1 cursor-pointer' onClick={() => naviate('/newpost')}>

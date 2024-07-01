@@ -142,7 +142,7 @@ function SingleUserPage() {
                     <img
                       src={user.avatarURL}
                       alt="Shoes"
-                      className="rounded-full h-32"
+                      className="rounded-full w-32 h-32"
                     />
                   </div>
                 </figure>
