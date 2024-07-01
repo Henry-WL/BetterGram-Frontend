@@ -5,6 +5,7 @@ const authContext = createContext()
 export const AuthProvider = ({ children }) => {
   const [state, setState] = useState({
     username: '',
+    avatarURL: '',
     isLoggedIn: false,
     token: null,
     userId: null
@@ -14,6 +15,7 @@ export const AuthProvider = ({ children }) => {
   const [userId, setUserId] = useState()
   const [isLoggedIn, setIsLoggedIn] = useState(false)
   const [username, setUsername] = useState()
+  const [avatarURL, setavatarURL] = useState()
 
   // functions to update the state
 
@@ -48,7 +50,7 @@ export const AuthProvider = ({ children }) => {
 
 
   return (
-    <authContext.Provider value={{ state, login, setIsLoggedIn, isLoggedIn, username, logout, userId, setUsername, token }}>
+    <authContext.Provider value={{ state, login, setIsLoggedIn, isLoggedIn, username, logout, userId, setUsername, token, avatarURL, setavatarURL }}>
       {children}
     </authContext.Provider>
   );

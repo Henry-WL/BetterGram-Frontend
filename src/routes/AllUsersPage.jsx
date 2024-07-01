@@ -108,7 +108,7 @@ function AllUsersPage() {
                   <img
                     src={user.avatarURL}
                     alt={user.username}
-                    className="object-cover"
+                    className="object-cover min-h-72"
                   />
                 </figure>
                 <div className="card-body">
@@ -122,7 +122,11 @@ function AllUsersPage() {
                   <button className="btn btn-primary" onClick={() => navigate(`/user/${user._id}`)}>Go to page</button>
                   {/* {console.log(user.followers.includes({_id: auth.userId}, 0))} */}
                   {/* {user.followers.some(follower => follower._id === auth.userId) && <p>INSIDE</p>} */}
+                  {
+                    auth.userId !== user._id &&
                     <button className="btn btn-primary"  onClick={() => followUserHandler(user._id, following)}>{following ? 'Unfollow' : 'Follow'}</button>
+
+                  }
                 
                 </div>
               </div>

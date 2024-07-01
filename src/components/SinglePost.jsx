@@ -132,7 +132,7 @@ function SinglePost({ post, setFeed, feed, showAllComments }) {
         <img
           src={post.imageURL}
           alt="User Avatar"
-          className="w-full h-full"
+          className="w-full h-full object-cover"
         />
       </div>
 
