@@ -12,6 +12,7 @@ import { useNavigate } from "react-router-dom";
 
 function SinglePost({ post, setFeed, feed, showAllComments }) {
   const [commentText, setCommentText] = useState("");
+  const [showDelete, setShowDelete] = useState(false)
   const auth = useContext(authContext);
   const navigate = useNavigate();
 
@@ -54,6 +55,10 @@ function SinglePost({ post, setFeed, feed, showAllComments }) {
   const checkLiked = () => {
     return post.likes.some((user) => user._id === auth.userId) ? true : false;
   };
+
+  const deletePostHandler = () => {
+    console.log('first')
+  }
 
   const likePostHandler = async (postId) => {
     const checkLikedRun = checkLiked();
@@ -170,15 +175,15 @@ function SinglePost({ post, setFeed, feed, showAllComments }) {
         <div className="flex justify-between p-2">
           <div className="flex">
             <HiOutlineHeart
-              className={`text-3xl mr-2 stroke-black hover:stroke-red-500 hover:fill-red-500 stroke-[1.5px] ${
+              className={`text-3xl mr-2 stroke-black hover:stroke-red-500 hover:fill-red-500 stroke-[1.5px] cursor-pointer ${
                 checkLiked() ? `fill-red-500 stroke-red-500` : ``
               }`}
               onClick={() => likePostHandler(post._id)}
             />
 
-            <CiChat1 className="text-3xl mr-2 stroke-black stroke-[0.5px] hover:stroke-[1px]" />
+            <CiChat1 className="text-3xl mr-2 stroke-black stroke-[0.5px] hover:stroke-[1px] cursor-pointer" />
 
-            <CiPaperplane className="text-3xl mr-2 stroke-black stroke-[0.5px] hover:stroke-[0.75px]" />
+            <CiPaperplane className="text-3xl mr-2 stroke-black stroke-[0.5px] hover:stroke-[0.75px] cursor-pointer" />
           </div>
           {/* 
         <div>
@@ -186,7 +191,12 @@ function SinglePost({ post, setFeed, feed, showAllComments }) {
         </div> */}
 
           <div className="text-3xl flex-col content-center">
-            <IoIosMore />
+            <IoIosMore className="cursor-pointer" onClick={() => setShowDelete(!showDelete)}/>
+            { showDelete && post.userID._id === auth.userId && 
+                <button className="btn btn-outline btn-error" onClick={deletePostHandler}>Delete</button>
+
+            }
+
           </div>
         </div>
 

@@ -29,7 +29,7 @@ console.log(comment)
       ) : (
         <div className="flex">
           {/* <img src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg" className="h-8 w-8 rounded-full"/> */}
-          {/* <h2 className="font-bold">{comment._id.username}</h2> */}
+          <h2 className="font-bold">{comment._id.username}</h2>
           <p className="ml-1">{comment.text}</p>
         </div>
       )}
