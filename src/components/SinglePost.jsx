@@ -9,6 +9,7 @@ import { HiOutlineBookmark } from "react-icons/hi";
 import CommentsList from "./CommentsList";
 import authContext from "../context/auth-context";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 function SinglePost({ post, setFeed, feed, showAllComments }) {
   const [commentText, setCommentText] = useState("");
@@ -56,8 +57,21 @@ function SinglePost({ post, setFeed, feed, showAllComments }) {
     return post.likes.some((user) => user._id === auth.userId) ? true : false;
   };
 
-  const deletePostHandler = () => {
+  const deletePostHandler = async () => {
     console.log('first')
+
+    try {
+        const response = await axios.delete(
+          `${import.meta.env.VITE_BACKEND_URL}/posts/singlePost/${post._id}`
+        )
+        console.log(response, "deleted successfully!")
+
+        navigate("/")
+      } catch (error) {
+        console.log("Something went wrong", error)
+      }
+
+
   }
 
   const likePostHandler = async (postId) => {
