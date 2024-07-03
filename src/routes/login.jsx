@@ -81,8 +81,8 @@ function login() {
       );
 
       const data = await response.json();
-
-      login(data.token, data._id, data.username);
+        console.log(data, 'userLOGINDATA')
+      login(data.token, data._id, data.username, data.userAvatarURL);
       setIsLoggedIn(true);
       navigate("/");
 

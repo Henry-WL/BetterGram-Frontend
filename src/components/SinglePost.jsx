@@ -13,7 +13,7 @@ import axios from "axios";
 
 function SinglePost({ post, setFeed, feed, showAllComments }) {
   const [commentText, setCommentText] = useState("");
-  const [showDelete, setShowDelete] = useState(false)
+  const [showDelete, setShowDelete] = useState(false);
   const auth = useContext(authContext);
   const navigate = useNavigate();
 
@@ -42,13 +42,13 @@ function SinglePost({ post, setFeed, feed, showAllComments }) {
 
     const data = await response.json();
 
-    console.log(data, 'comment submit');
+    console.log(data, "comment submit");
 
     const updatedFeed = feed.map((post) => {
       return post._id === postID ? { ...data.updatedPost } : post;
     });
 
-    console.log(updatedFeed, 'updated FEED!');
+    console.log(updatedFeed, "updated FEED!");
 
     setFeed(updatedFeed);
   };
@@ -58,21 +58,19 @@ function SinglePost({ post, setFeed, feed, showAllComments }) {
   };
 
   const deletePostHandler = async () => {
-    console.log('first')
+    console.log("first");
 
     try {
-        const response = await axios.delete(
-          `${import.meta.env.VITE_BACKEND_URL}/posts/singlePost/${post._id}`
-        )
-        console.log(response, "deleted successfully!")
+      const response = await axios.delete(
+        `${import.meta.env.VITE_BACKEND_URL}/posts/singlePost/${post._id}`
+      );
+      console.log(response, "deleted successfully!");
 
-        navigate("/")
-      } catch (error) {
-        console.log("Something went wrong", error)
-      }
-
-
-  }
+      navigate("/");
+    } catch (error) {
+      console.log("Something went wrong", error);
+    }
+  };
 
   const likePostHandler = async (postId) => {
     const checkLikedRun = checkLiked();
@@ -98,7 +96,7 @@ function SinglePost({ post, setFeed, feed, showAllComments }) {
 
       const data = await response.json();
 
-      console.log(data);
+      console.log(data, 'unlikePOSTDATA');
 
       //   setFeed([data.updatedPost])
       const updatedFeed = feed.map((post) => {
@@ -132,7 +130,7 @@ function SinglePost({ post, setFeed, feed, showAllComments }) {
 
       const data = await response.json();
 
-      console.log(data);
+      console.log(data, 'likePOSTDATA');
 
       //   setFeed([data.updatedPost])
       const updatedFeed = feed.map((post) => {
@@ -171,9 +169,7 @@ function SinglePost({ post, setFeed, feed, showAllComments }) {
         </div>
 
         <div className="mt-4">
-          <p className="text-gray-400 mx-8">
-            {post.status}
-          </p>
+          <p className="text-gray-400 mx-8">{post.status}</p>
         </div>
 
         <div className="flex-row mt-2 pt-2 border-t border-gray-300 overflow-auto max-h-80">
@@ -204,13 +200,19 @@ function SinglePost({ post, setFeed, feed, showAllComments }) {
           <HiOutlineBookmark className="text-3xl mr-2 stroke-black hover:fill-gray-900 stroke-[1.5px]" />
         </div> */}
 
-          <div className="text-3xl flex-col content-center">
-            <IoIosMore className="cursor-pointer" onClick={() => setShowDelete(!showDelete)}/>
-            { showDelete && post.userID._id === auth.userId && 
-                <button className="btn btn-outline btn-error" onClick={deletePostHandler}>Delete</button>
-
-            }
-
+          <div className="text-3xl flex flex-col  justify-center items-center">
+            <IoIosMore
+              className="cursor-pointer"
+              onClick={() => setShowDelete(!showDelete)}
+            />
+            {showDelete && post.userID._id === auth.userId && (
+              <button
+                className="btn btn-outline btn-error"
+                onClick={deletePostHandler}
+              >
+                Delete
+              </button>
+            )}
           </div>
         </div>
 

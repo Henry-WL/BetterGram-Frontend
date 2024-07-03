@@ -7,6 +7,7 @@ import { Route, Routes, useNavigate } from "react-router-dom";
 import authContext, { AuthProvider } from "./context/auth-context";
 import AuthenticatedRoutes from "./routes/AuthenticatedRoutes";
 import NavbarComponent from "./components/NavbarComponent";
+import BottomNav from "./components/BottomNav";
 
 function App() {
   const navigate = useNavigate();
@@ -25,7 +26,11 @@ function App() {
     <AuthProvider>
       <>
         <NavbarComponent />
+        <div className="pb-14 sm:pb-0">
+
         <AuthenticatedRoutes />
+        </div>
+        <BottomNav/>
       </>
     </AuthProvider>
     // <Routes>

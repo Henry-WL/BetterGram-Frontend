@@ -95,9 +95,9 @@ function AllUsersPage() {
   const userIDObj = {_id: auth.userId}
 
   return (
-    <div>
-      {isLoading && <p>Loading...</p>}
-      <div className="flex flex-wrap gap-2 pt-4 justify-center">
+
+    <div className="flex flex-wrap gap-2 pt-4 justify-center">
+        {isLoading && <p>Loading...</p>}
         {!isLoading &&
           users.map((user) => {
             const following = user.followers.some(follower => follower._id === auth.userId)
@@ -133,7 +133,7 @@ function AllUsersPage() {
             );
           })}
       </div>
-    </div>
+ 
   );
 }
 

@@ -25,10 +25,12 @@ export const AuthProvider = ({ children }) => {
 //     })
 //   }
 
-  const login = (token, uid, username, expirationDate) => {
+  const login = (token, uid, username, userAvatarURL, expirationDate) => {
+    console.log(userAvatarURL, 'useravatar contex')
     setToken(token)
     setUserId(uid)
     setUsername(username)
+    setavatarURL(userAvatarURL)
 
     localStorage.setItem("userData", JSON.stringify({
       userId: uid,

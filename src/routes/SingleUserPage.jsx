@@ -111,6 +111,7 @@ function SingleUserPage() {
     // console.log(data, 'data');
 
     setUser(response.data.updatedUser);
+    auth.setavatarURL(response.data.updatedUser.avatarURL)
     // fetchSingleUserFeed();
   };
 
