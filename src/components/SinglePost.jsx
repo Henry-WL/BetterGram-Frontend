@@ -144,12 +144,12 @@ function SinglePost({ post, setFeed, feed, showAllComments }) {
   };
 
   return (
-    <div className="shadow-xl pt-4 flex flex-col sm:flex-row">
+    <div className="shadow-xl pt-4 flex rounded-lg flex-col sm:flex-row">
       <div className="p-2">
         <img
           src={post.imageURL}
           alt="User Avatar"
-          className="w-full h-full object-cover"
+          className="w-full h-full rounded-md object-cover"
         />
       </div>
 

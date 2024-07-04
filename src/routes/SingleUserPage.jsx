@@ -137,7 +137,7 @@ function SingleUserPage() {
           {isLoading && <p>Loading...</p>}
           <div>
             {!isLoading && (
-              <div className="card sm:w-96 md:w-full md:flex-row bg-base-100 shadow-xl">
+              <div className="m-2 card sm:w-96 md:w-full md:flex-row bg-base-100 shadow-xl">
                 <figure className="">
                   <div className="w-full flex justify-center">
                     <img

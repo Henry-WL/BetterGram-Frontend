@@ -12,7 +12,7 @@ function UserProfilePost({ post }) {
         // src="https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.jpg"
         src={post.imageURL}
         alt="Shoes"
-        className="w-96 h-80 object-contain rounded-lg shadow-sm"
+        className="w-96 h-96 rounded-lg shadow-sm"
       />
     </div>
   );
