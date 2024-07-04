@@ -172,7 +172,7 @@ function SingleUserPage() {
                     <div className="flex justify-center gap-8">
                       <div>
                         <h2 className="font-bold text-xl">
-                          {user.following.length}
+                          {!isLoading && user.following.length}
                         </h2>
                         <h3 className="font-medium text-gray-400 text-lg">
                           Following
@@ -181,7 +181,7 @@ function SingleUserPage() {
 
                       <div>
                         <h2 className="font-bold text-xl">
-                          {user.followers.length}
+                          {!isLoading && user.followers.length}
                         </h2>
                         <h3 className="font-medium text-gray-400 text-lg">
                           Followers

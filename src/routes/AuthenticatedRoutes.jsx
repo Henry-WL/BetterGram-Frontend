@@ -24,7 +24,7 @@ function AuthenticatedRoutes() {
       navigate('/login')
     }
 
-  }, [auth.isLoggedIn])
+  }, [auth.isLoggedIn, navigate])
 
   return (
     // <AuthProvider>

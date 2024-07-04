@@ -13,6 +13,7 @@ function BottomNav() {
   return (
     <div>
 {/* bottom nav */}
+{auth.isLoggedIn && 
 <div className="btm-nav sm:hidden">
         <NavLink
           to="/"
@@ -60,6 +61,7 @@ function BottomNav() {
           </svg>
         </NavLink>
       </div>
+}
 
 
     </div>
