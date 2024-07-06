@@ -38,7 +38,7 @@ function AuthenticatedRoutes() {
       <Route path='/user/:uid' element={<SingleUserPage/>}/>
       <Route path='/post/:pid' element={<SinglePostPage/>}/>
 
-
+      {/* make an edit page and move to seperate route */}
       <Route path='/login' element={<Login/>}/>
       {/* <Route path='/profile' element={<Profile/>} /> */}
       <Route path='/newpost' element={<NewPost/>}/>
