@@ -19,6 +19,8 @@ function SingleUserPage() {
   const { uid } = useParams();
   const auth = useContext(authContext);
 
+  // change single user page design
+
   const fetchSingleUserFeed = async () => {
     const response = await fetch(
       `${import.meta.env.VITE_BACKEND_URL}/users/singleUserFeed/${uid}`
