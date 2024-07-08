@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useRef, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import authContext from "../context/auth-context";
 import SinglePost from "../components/SinglePost";
 import InstagramCard from "../components/InstagramCard";
@@ -20,6 +20,8 @@ function SingleUserPage() {
   const auth = useContext(authContext);
 
   // change single user page design
+
+  const navigate = useNavigate()
 
   const fetchSingleUserFeed = async () => {
     const response = await fetch(
@@ -197,9 +199,11 @@ function SingleUserPage() {
                   {auth.userId === uid && (
                     <button
                       className="btn btn-primary"
-                      onClick={() => setIsEditing(!isEditing)}
+                      // onClick={() => setIsEditing(!isEditing)}\
+                      onClick={() => navigate(`/user/edit/${auth.userId}`)}
                     >
-                      {isEditing ? "Stop" : "Edit"}
+                      {/* {isEditing ? "Stop" : "Edit"} */}
+                      Edit
                     </button>
                   )}
 

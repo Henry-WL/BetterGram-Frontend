@@ -12,6 +12,7 @@ import NewPost from "./NewPost";
 import AllUsersPage from "./AllUsersPage";
 import SingleUserPage from "./SingleUserPage";
 import SinglePostPage from "./SinglePostPage";
+import EditUser from "./EditUser";
 
 function AuthenticatedRoutes() {
   const navigate = useNavigate()
@@ -36,6 +37,7 @@ function AuthenticatedRoutes() {
         <Route path='/' element={<Main/>}/>
       <Route path='/allusers' element={<AllUsersPage/>}/>
       <Route path='/user/:uid' element={<SingleUserPage/>}/>
+      <Route path='/user/edit/:uid' element={<EditUser/>}/>
       <Route path='/post/:pid' element={<SinglePostPage/>}/>
 
       {/* make an edit page and move to seperate route */}
