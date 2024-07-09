@@ -1,14 +1,20 @@
 import React, { useContext, useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import authContext from "../context/auth-context";
 
 function EditUser() {
   // check user is currently logged in before allowing editing, if not redirect
   const [isLoading, setIsLoading] = useState(true);
   const [user, setUser] = useState();
+  const [email, setEmail] = useState("");
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [bio, setBio] = useState("");
+  const [avatar, setAvatar] = useState();
 
   const { uid } = useParams();
   const auth = useContext(authContext);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchSingleUser = async () => {
@@ -39,11 +45,16 @@ function EditUser() {
   return (
     <div>
       <div className="flex justify-between w-full border-b-2">
-        <button>Cancel</button>
+        <button
+          className="text-lg"
+          onClick={() => navigate(`/user/${auth.userId}`)}
+        >
+          Cancel
+        </button>
 
-        <h2>Edit Profile</h2>
+        <h2 className="font-semibold text-xl">Edit Profile</h2>
 
-        <button>Done</button>
+        <button className="text-lg font-semibold text-sky-500">Done</button>
       </div>
 
       <div className="flex flex-col items-center mt-5">
@@ -62,49 +73,57 @@ function EditUser() {
         {/* Edit form */}
 
         {/* <form onSubmit={editProfileHandler}> */}
-        <form>
+        <form className="border-t-2 ">
           <div>
-            <label className="input flex items-center gap-2 mt-1">
-              Username
+            <label className=" input flex items-center gap-2 mt-1">
+              <h3 className="w-20 text-left">Username</h3>
               <input
                 type="text"
-                className="grow"
+                className="grow border-b-2 py-2 border-gray-100"
                 placeholder={user.username}
-                // value={email}
-                // onChange={(e) => setEmail(e.target.value)}
+                value={username}
+                onChange={(e) => setUsername(e.target.value)}
               />
             </label>
             <label className="input flex items-center gap-2 mt-1">
-              Email
+            <h3 className="w-20 text-left">Email</h3>
               <input
                 type="text"
-                className="grow"
+                className="grow border-b-2 py-2 border-gray-100"
                 placeholder={user.email}
-                // value={email}
-                // onChange={(e) => setEmail(e.target.value)}
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
               />
             </label>
             <label className="input flex items-center gap-2 mt-1">
-              Bio
+            <h3 className="w-20 text-left">Bio</h3>
               <input
                 type="text"
-                className="grow"
+                className="grow border-b-2 py-2 border-gray-100"
                 placeholder="Freelance photographer"
-                // value={email}
-                // onChange={(e) => setEmail(e.target.value)}
+                value={bio}
+                onChange={(e) => setBio(e.target.value)}
               />
             </label>
             <label className="input flex items-center gap-2 mt-1">
-              Password
+            <h3 className="w-20 text-left">Password</h3>
               <input
-                            type="password"
-                            className="grow"
-                            // value={password}
-                            // onChange={(e) => setPassword(e.target.value)}
-                          />
+                type="password"
+                className="grow border-b-2 py-2 border-gray-100"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+              />
             </label>
           </div>
         </form>
+
+        <div className="text-left pl-2">
+            <h2 className="text-lg text-sky-500 font-medium  border-b-2 py-2 border-gray-100">Switch to professional account</h2>
+
+            <h2 className="text-lg text-sky-500 font-medium  border-b-2 py-2 border-gray-100">Create avatar</h2>
+
+            <h2 className="text-lg text-sky-500 font-medium  border-b-2 py-2 border-gray-100">Personal information settings</h2>
+        </div>
       </div>
     </div>
   );
