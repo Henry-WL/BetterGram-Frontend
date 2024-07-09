@@ -9,6 +9,8 @@ function EditUser() {
   const [email, setEmail] = useState("");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [image, setImage] = useState();
+  const [preview, setPreview] = useState();
   const [bio, setBio] = useState("");
   const [avatar, setAvatar] = useState();
 
@@ -42,6 +44,12 @@ function EditUser() {
     return <p>User not found</p>;
   }
 
+  const handleImageSelect = (e) => {
+    // e => setImage(e.target.files[0])
+    setImage(e.target.files[0]);
+    setPreview(URL.createObjectURL(e.target.files[0]));
+  };
+
   return (
     <div>
       <div className="flex justify-between w-full border-b-2">
@@ -59,14 +67,26 @@ function EditUser() {
 
       <div className="flex flex-col items-center mt-5">
         <img
-          src={user.avatarURL}
+          src={preview ? preview : user.avatarURL}
           alt="user avatar"
           className="h-36 w-36 rounded-full"
         />
 
-        <h2 className="text-sky-500 text-lg font-semibold mt-2">
-          Change profile photo
-        </h2>
+        <div className="my-2">
+          <input
+            type="file"
+            id="file-upload"
+            className="hidden"
+            onChange={handleImageSelect}
+          />
+          <label
+            htmlFor="file-upload"
+            className="text-sky-500 text-lg font-semibold mt-z"
+          >
+            Change profile photo
+          </label>
+        </div>
+
       </div>
 
       <div>
@@ -86,7 +106,7 @@ function EditUser() {
               />
             </label>
             <label className="input flex items-center gap-2 mt-1">
-            <h3 className="w-20 text-left">Email</h3>
+              <h3 className="w-20 text-left">Email</h3>
               <input
                 type="text"
                 className="grow border-b-2 py-2 border-gray-100"
@@ -96,7 +116,7 @@ function EditUser() {
               />
             </label>
             <label className="input flex items-center gap-2 mt-1">
-            <h3 className="w-20 text-left">Bio</h3>
+              <h3 className="w-20 text-left">Bio</h3>
               <input
                 type="text"
                 className="grow border-b-2 py-2 border-gray-100"
@@ -106,7 +126,7 @@ function EditUser() {
               />
             </label>
             <label className="input flex items-center gap-2 mt-1">
-            <h3 className="w-20 text-left">Password</h3>
+              <h3 className="w-20 text-left">Password</h3>
               <input
                 type="password"
                 className="grow border-b-2 py-2 border-gray-100"
@@ -118,11 +138,17 @@ function EditUser() {
         </form>
 
         <div className="text-left pl-2">
-            <h2 className="text-lg text-sky-500 font-medium  border-b-2 py-2 border-gray-100">Switch to professional account</h2>
+          <h2 className="text-lg text-sky-500 font-medium  border-b-2 py-2 border-gray-100">
+            Switch to professional account
+          </h2>
 
-            <h2 className="text-lg text-sky-500 font-medium  border-b-2 py-2 border-gray-100">Create avatar</h2>
+          <h2 className="text-lg text-sky-500 font-medium  border-b-2 py-2 border-gray-100">
+            Create avatar
+          </h2>
 
-            <h2 className="text-lg text-sky-500 font-medium  border-b-2 py-2 border-gray-100">Personal information settings</h2>
+          <h2 className="text-lg text-sky-500 font-medium  border-b-2 py-2 border-gray-100">
+            Personal information settings
+          </h2>
         </div>
       </div>
     </div>
