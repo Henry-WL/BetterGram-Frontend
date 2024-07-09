@@ -233,7 +233,10 @@ function SinglePost({ post, setFeed, feed, showAllComments }) {
               onChange={(e) => setCommentText(e.target.value)}
               value={commentText}
             ></input>
-            <CiPaperplane className="text-2xl mr-2 stroke-black stroke-[0.25px] mt-1" />
+            <button type="submit">
+
+            <CiPaperplane className="cursor-pointer text-2xl mr-2 stroke-black stroke-[0.25px] mt-1"/>
+            </button>
           </form>
         </div>
       </div>
