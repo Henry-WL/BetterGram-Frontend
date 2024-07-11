@@ -200,21 +200,21 @@ function SingleUserPage() {
                       onClick={() => navigate(`/user/edit/${auth.userId}`)}
                     >
            
-                      Edit NEW
+                      Edit
                     </button>
                   )}
                   {/* <p>If a dog chews shoes whose shoes does he choose?</p> */}
 
-                  {auth.userId === uid && (
+                  
+                  {/* {auth.userId === uid && (
                     <button
                       className="btn btn-primary"
                       onClick={() => setIsEditing(!isEditing)}
-                      // onClick={() => navigate(`/user/edit/${auth.userId}`)}
+     
                     >
                       {isEditing ? "Stop" : "Edit"}
-                      {/* Edit */}
                     </button>
-                  )}
+                  )} */}
 
                   {auth.userId === uid && isEditing && (
                     <form onSubmit={editProfileHandler}>
