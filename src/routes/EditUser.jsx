@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import authContext from "../context/auth-context";
+import axios from "axios";
 
 function EditUser() {
   // check user is currently logged in before allowing editing, if not redirect
@@ -47,7 +48,48 @@ function EditUser() {
   const handleImageSelect = (e) => {
     // e => setImage(e.target.files[0])
     setImage(e.target.files[0]);
+    setAvatar(e.target.files[0])
     setPreview(URL.createObjectURL(e.target.files[0]));
+  };
+
+  const submitEditUserForms = (e) => {
+    e.preventDefault()
+    console.log('running')
+  }
+
+  const submitEditUserForm = async (e) => {
+    e.preventDefault();
+    console.log("edit profile handler");
+    const formData = new FormData();
+    formData.append("email", email);
+    formData.append("username", username);
+    formData.append("image", avatar);
+    formData.append("password", password);
+
+    const config = { headers: { "Content-Type": "multipart/form-data" } };
+
+    const response = await axios.patch(
+      `${import.meta.env.VITE_BACKEND_URL}/users/user/updateUserProfile/${
+        auth.userId
+      }`,
+      formData,
+      config
+    );
+
+    setEmail("");
+    setPassword("");
+    // inputFile.current.value = "";
+    // inputFile.current.type = "text";
+    // inputFile.current.type = "file";
+    setUsername("");
+
+
+    console.log(response, "response");
+
+    setUser(response.data.updatedUser);
+    auth.setavatarURL(response.data.updatedUser.avatarURL)
+
+    navigate(`/user/${auth.userId}`)
   };
 
   return (
@@ -62,7 +104,7 @@ function EditUser() {
 
         <h2 className="font-semibold text-xl">Edit Profile</h2>
 
-        <button className="text-lg font-semibold text-sky-500">Done</button>
+        <button className="text-lg font-semibold text-sky-500" type="submit" form="editUserForm">Done</button>
       </div>
 
       <div className="flex flex-col items-center mt-5">
@@ -86,14 +128,13 @@ function EditUser() {
             Change profile photo
           </label>
         </div>
-
       </div>
 
       <div>
         {/* Edit form */}
 
         {/* <form onSubmit={editProfileHandler}> */}
-        <form className="border-t-2 ">
+        <form className="border-t-2" id="editUserForm" onSubmit={submitEditUserForm}>
           <div>
             <label className=" input flex items-center gap-2 mt-1">
               <h3 className="w-20 text-left">Username</h3>
@@ -115,7 +156,7 @@ function EditUser() {
                 onChange={(e) => setEmail(e.target.value)}
               />
             </label>
-            <label className="input flex items-center gap-2 mt-1">
+            {/* <label className="input flex items-center gap-2 mt-1">
               <h3 className="w-20 text-left">Bio</h3>
               <input
                 type="text"
@@ -124,7 +165,7 @@ function EditUser() {
                 value={bio}
                 onChange={(e) => setBio(e.target.value)}
               />
-            </label>
+            </label> */}
             <label className="input flex items-center gap-2 mt-1">
               <h3 className="w-20 text-left">Password</h3>
               <input

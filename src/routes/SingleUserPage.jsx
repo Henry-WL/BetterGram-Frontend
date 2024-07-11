@@ -193,17 +193,26 @@ function SingleUserPage() {
                       </div>
                     </div>
                   </div>
-
+                  {auth.userId === uid && (
+                   <button
+                      className="btn btn-primary"
+       
+                      onClick={() => navigate(`/user/edit/${auth.userId}`)}
+                    >
+           
+                      Edit NEW
+                    </button>
+                  )}
                   {/* <p>If a dog chews shoes whose shoes does he choose?</p> */}
 
                   {auth.userId === uid && (
                     <button
                       className="btn btn-primary"
-                      // onClick={() => setIsEditing(!isEditing)}\
-                      onClick={() => navigate(`/user/edit/${auth.userId}`)}
+                      onClick={() => setIsEditing(!isEditing)}
+                      // onClick={() => navigate(`/user/edit/${auth.userId}`)}
                     >
-                      {/* {isEditing ? "Stop" : "Edit"} */}
-                      Edit
+                      {isEditing ? "Stop" : "Edit"}
+                      {/* Edit */}
                     </button>
                   )}
 
