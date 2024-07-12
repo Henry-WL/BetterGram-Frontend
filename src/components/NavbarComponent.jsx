@@ -52,7 +52,7 @@ function NavbarComponent() {
                 </li>
 
                 <li onClick={() => navigate("/newpost")}>
-                  <a>NewPost</a>
+                  <a>New Post</a>
                 </li>
 
                 <li onClick={logoutHandler}>
