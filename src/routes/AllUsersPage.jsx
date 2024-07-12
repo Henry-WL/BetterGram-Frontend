@@ -109,6 +109,7 @@ function AllUsersPage() {
                     src={user.avatarURL}
                     alt={user.username}
                     className="object-cover h-72"
+                    // Change image size
                   />
                 </figure>
                 <div className="card-body">
