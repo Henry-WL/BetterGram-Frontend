@@ -6,6 +6,7 @@ import InstagramCard from "../components/InstagramCard";
 import UserProfilePost from "../components/UserProfilePost";
 import { CiPaperplane } from "react-icons/ci";
 import axios from "axios";
+import SingleUserTopCard from "../components/SingleUserTopCard";
 
 function SingleUserPage() {
   const [user, setUser] = useState({});
@@ -318,6 +319,10 @@ function SingleUserPage() {
       <div>
         {isLoading && <p>Loading...</p>}
         <div className="flex flex-wrap justify-center">
+          <div>
+            {/* user profile top card  */}
+            <SingleUserTopCard user={user} />
+          </div>
           {!isLoading &&
             feed.map((post) => {
               return (
