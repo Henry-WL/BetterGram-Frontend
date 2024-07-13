@@ -108,7 +108,7 @@ function AllUsersPage() {
                   <img
                     src={user.avatarURL}
                     alt={user.username}
-                    className="object-cover h-72"
+                    className="object-cover h-60 w-60 rounded-full"
                     // Change image size
                   />
                 </figure>

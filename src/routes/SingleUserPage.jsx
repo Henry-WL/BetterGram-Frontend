@@ -144,7 +144,7 @@ function SingleUserPage() {
             {!isLoading && (
               <div className="m-2 card sm:w-96 md:w-full md:flex-row bg-base-100 shadow-xl">
                 <figure className="">
-                  <div className="w-full flex justify-center">
+                  <div className="w-full flex justify-center sm:mx-4">
                     <img
                       src={user.avatarURL}
                       alt="Shoes"
@@ -321,7 +321,7 @@ function SingleUserPage() {
         <div className="flex flex-wrap justify-center">
           <div>
             {/* user profile top card  */}
-            <SingleUserTopCard user={user} />
+            {/* <SingleUserTopCard user={user} /> */}
           </div>
           {!isLoading &&
             feed.map((post) => {
