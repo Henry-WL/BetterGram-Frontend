@@ -62,6 +62,7 @@ function EditUser() {
     console.log("edit profile handler");
     const formData = new FormData();
     formData.append("email", email);
+    formData.append("bio", bio);
     formData.append("username", username);
     formData.append("image", avatar);
     formData.append("password", password);
@@ -77,7 +78,9 @@ function EditUser() {
     );
 
     setEmail("");
+    setBio("")
     setPassword("");
+    
     // inputFile.current.value = "";
     // inputFile.current.type = "text";
     // inputFile.current.type = "file";
@@ -161,7 +164,7 @@ function EditUser() {
               <input
                 type="text"
                 className="grow border-b-2 py-2 border-gray-100"
-                placeholder="Freelance photographer"
+                placeholder={user.bio}
                 value={bio}
                 onChange={(e) => setBio(e.target.value)}
               />
