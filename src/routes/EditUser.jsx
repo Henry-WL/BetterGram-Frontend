@@ -156,7 +156,7 @@ function EditUser() {
                 onChange={(e) => setEmail(e.target.value)}
               />
             </label>
-            {/* <label className="input flex items-center gap-2 mt-1">
+            <label className="input flex items-center gap-2 mt-1">
               <h3 className="w-20 text-left">Bio</h3>
               <input
                 type="text"
@@ -165,7 +165,7 @@ function EditUser() {
                 value={bio}
                 onChange={(e) => setBio(e.target.value)}
               />
-            </label> */}
+            </label>
             <label className="input flex items-center gap-2 mt-1">
               <h3 className="w-20 text-left">Password</h3>
               <input
