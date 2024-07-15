@@ -158,13 +158,14 @@ function SinglePost({ post, setFeed, feed, showAllComments }) {
           <img
             src={post.userID.avatarURL}
             alt="Shoes"
-            className="h-16 w-16 object-cover rounded-full shadow-md "
+            className="h-16 w-16 object-cover rounded-full shadow-md cursor-pointer"
+            onClick={() => navigate(`/user/${post.userID._id}`)}
           />
           <div className="flex-col justify-center content-center inline-block">
-            <p className="text-lg font-bold text-left">
+            <p className="text-lg font-bold text-left cursor-pointer" onClick={() => navigate(`/user/${post.userID._id}`)}>
               {post.userID.username}
             </p>
-            <p className="text-gray-400 text-left">@{post.userID.username}</p>
+            <p className="text-gray-400 text-left cursor-pointer" onClick={() => navigate(`/user/${post.userID._id}`)}>@{post.userID.username}</p>
           </div>
         </div>
 

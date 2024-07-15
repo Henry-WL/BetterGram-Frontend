@@ -174,7 +174,7 @@ function InstagramCard({ post, setFeed, feed, showAllComments }) {
         </div>
 
         <div className="w-100 text-left flex">
-          <p className="font-bold">{post.userID.username}</p>
+          <p className="font-bold cursor-pointer" onClick={() => navigate(`/user/${post.userID._id}`)}>{post.userID.username}</p>
           <p className="ml-2">{post.status}</p>
         </div>
         <div className="w-100 text-left">

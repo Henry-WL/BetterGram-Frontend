@@ -1,8 +1,11 @@
 import React, { useState } from "react";
 import { format } from "date-fns";
+import { useNavigate } from "react-router-dom";
 
 function CommentsList({ comment, showAllComments }) {
   const [showMore, setShowMore] = useState(false);
+  console.log(comment)
+  const navigate = useNavigate()
 console.log(comment)
   return (
     // if (showAllComments) {
@@ -21,15 +24,16 @@ console.log(comment)
         <div className="flex p-2">
           <img
             src={comment._id.avatarURL}
-            className="h-8 w-8 object-cover rounded-full"
+            className="h-8 w-8 object-cover rounded-full cursor-pointer"
+            onClick={() => navigate(`/user/${comment._id._id}`)}
           />
-          <h2 className="ml-2 font-bold">{comment._id.username}</h2>
+          <h2 className="ml-2 font-bold cursor-pointer" onClick={() => navigate(`/user/${comment._id._id}`)}>{comment._id.username}</h2>
           <p className="ml-1">{comment.text}</p>
         </div>
       ) : (
         <div className="flex">
           {/* <img src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg" className="h-8 w-8 rounded-full"/> */}
-          <h2 className="font-bold">{comment._id.username}</h2>
+          <h2 className="font-bold cursor-pointer" onClick={() => navigate(`/user/${comment._id._id}`)}>{comment._id.username}</h2>
           <p className="ml-1">{comment.text}</p>
         </div>
       )}

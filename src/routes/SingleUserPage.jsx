@@ -35,7 +35,7 @@ function SingleUserPage() {
 
     setFeed(data.posts);
 
-    
+    setIsLoading(false);
   };
 
   const inputFile = useRef(null);
@@ -58,8 +58,6 @@ function SingleUserPage() {
     fetchSingleUser();
 
     fetchSingleUserFeed();
-
-    setIsLoading(false)
   }, []);
 
   const editProfileHandler = async (e) => {
@@ -175,7 +173,7 @@ function SingleUserPage() {
                         @{user.username}
                       </h2>
 
-                      <h2 className="font-semibold text-xl">
+                      <h2 className="font-semibold text-lg pt-2 text-gray-800">
                         {user.bio}
                       </h2>
                     </div>
@@ -188,8 +186,8 @@ function SingleUserPage() {
                           {!isLoading && user.following.length !== undefined}
                         </h2> */}
                           <h2 className="font-bold text-xl">
-                          {/* {user.following.length !== undefined && user.following.length} */}
-                          {user.following.length === undefined ? 0 : user.following.length}
+                          {user.following.length !== undefined && user.following.length}
+                          {/* {user.following.length === undefined ? 0 : user.following.length} */}
                         </h2>
                         <h3 className="font-medium text-gray-400 text-lg">
                           Following
@@ -198,8 +196,8 @@ function SingleUserPage() {
 
                       <div>
                         <h2 className="font-bold text-xl">
-                          {/* {user.followers.length !== undefined && user.followers.length} */}
-                          {user.followers.length === undefined ? 0 : user.followers.length}
+                          {user.followers.length !== undefined && user.followers.length}
+                          {/* {user.followers.length === undefined ? 0 : user.followers.length} */}
 
                         </h2>
                         <h3 className="font-medium text-gray-400 text-lg">
