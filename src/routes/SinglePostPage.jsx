@@ -17,7 +17,13 @@ function SinglePostPage() {
 
     useEffect(() => {
         const fetchFeed = async () => {
-            const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}/posts/singlePost/${pid}`)
+            const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}/posts/singlePost/${pid}`, {
+                headers: {
+                    Accept: "application/json",
+                    "Content-Type": "application/json",
+                    Authorization: "Bearer " + auth.token,
+                  }
+            })
 
             const data = await response.json()
 

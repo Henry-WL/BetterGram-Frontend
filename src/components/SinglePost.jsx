@@ -63,7 +63,13 @@ function SinglePost({ post, setFeed, feed, showAllComments }) {
     try {
       const response = await axios.delete(
         `${import.meta.env.VITE_BACKEND_URL}/posts/singlePost/${post._id}`
-      );
+      , {
+        headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json",
+            Authorization: "Bearer " + auth.token,
+          }
+    });
       console.log(response, "deleted successfully!");
 
       navigate("/");

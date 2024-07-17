@@ -19,13 +19,27 @@ function NewPost() {
     formData.append("image", image);
     formData.append("text", text)
 
-    const config = { headers: { "Content-Type": "multipart/form-data" } };
-
+    const config = { headers: { "Content-Type": "multipart/form-data"}};
+// {
+//                 headers: {
+//                     Accept: "application/json",
+//                     "Content-Type": "application/json",
+//                     Authorization: "Bearer " + auth.token,
+//                   }
+//             }
+console.log(formData)
     try {
       const data = await axios.post(
         `${import.meta.env.VITE_BACKEND_URL}/posts/post/${auth.userId}`,
         formData,
-        config
+        // config,
+        {
+          headers: {
+              Accept: "application/json",
+              "Content-Type": "multipart/form-data",
+              Authorization: "Bearer " + auth.token,
+            }
+      }
       );
       console.log(data);
     } catch (err) {
