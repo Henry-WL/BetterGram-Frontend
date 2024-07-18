@@ -41,7 +41,7 @@ function SuggestFollowers() {
         headers: {
           Accept: "application/json",
           "Content-Type": "application/json",
-          // Authorization: "Bearer " + auth.token,
+          Authorization: "Bearer " + auth.token,
         },
         body: JSON.stringify({
           loggedInUser: auth.userId,

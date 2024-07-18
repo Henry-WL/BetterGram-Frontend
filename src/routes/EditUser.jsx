@@ -74,7 +74,13 @@ function EditUser() {
         auth.userId
       }`,
       formData,
-      config
+      {
+        headers: {
+            Accept: "application/json",
+            "Content-Type": "multipart/form-data",
+            Authorization: "Bearer " + auth.token,
+          }
+    }
     );
 
     setEmail("");
