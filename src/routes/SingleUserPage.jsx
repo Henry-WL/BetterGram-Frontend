@@ -17,6 +17,9 @@ function SingleUserPage() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [avatar, setAvatar] = useState();
+  // const [following, setFollowing] = useState(user.followers.some(
+  //   (follower) => follower._id === auth.userId
+  // ))
   const { uid } = useParams();
   const auth = useContext(authContext);
 
@@ -38,25 +41,50 @@ function SingleUserPage() {
     setIsLoading(false);
   };
 
+  // let isFollowing = (user.followers.some(
+  //   (follower) => follower._id === auth.userId
+  // ))
+
   const followUserHandler = async (uid) => {
     console.log(uid)
 
-    let axiosConfig = {
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-        Authorization: "Bearer " + auth.token,
-      },
-    };
-    const response = await axios.post(
-      `${import.meta.env.VITE_BACKEND_URL}/users/follow/${
-        auth.userId
-      }`,
-      {loggedInUser: auth.userId},
-      axiosConfig
-    );
+    let isFollowing = (user.followers.some(
+        (follower) => follower._id === auth.userId
+      ))
 
-    console.log(response)
+      let axiosConfig = {
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + auth.token,
+        },
+      };
+
+    if (isFollowing) {
+      const response = await axios.post(
+        `${import.meta.env.VITE_BACKEND_URL}/users/unfollow/${
+          uid
+        }`,
+        {loggedInUser: auth.userId},
+        axiosConfig
+      );
+  
+      console.log(response)
+
+    } else {
+      const response = await axios.post(
+        `${import.meta.env.VITE_BACKEND_URL}/users/follow/${
+          uid
+        }`,
+        {loggedInUser: auth.userId},
+        axiosConfig
+      );
+  
+      console.log(response)
+
+    }
+
+
   }
 
   const inputFile = useRef(null);
@@ -183,7 +211,11 @@ function SingleUserPage() {
                         onClick={() => followUserHandler(user._id)}
                       >
                         {/* Follow */}
-                        {user.followers.includes(auth.userId) ? 'Follow' : 'Unfollow'}
+                        {/* {user.followers.includes(auth.userId) ? 'Unfollow' : 'Follow'} */}
+                        {user.followers.some((follower) => follower._id === auth.userId) ? 'Unfollow' : 'Follow'}
+                        {/* {isFollowing ? 'Follow' : 'Unfollow'} */}
+
+                        {/* {following ? 'Unfollow' : 'Follow'} */}
                       </button>
 
                       <CiPaperplane className="text-3xl mr-2 stroke-black stroke-[0.5px] hover:stroke-[0.75px]" />
