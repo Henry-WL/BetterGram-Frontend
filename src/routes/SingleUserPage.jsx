@@ -38,6 +38,27 @@ function SingleUserPage() {
     setIsLoading(false);
   };
 
+  const followUserHandler = async (uid) => {
+    console.log(uid)
+
+    let axiosConfig = {
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+        Authorization: "Bearer " + auth.token,
+      },
+    };
+    const response = await axios.post(
+      `${import.meta.env.VITE_BACKEND_URL}/users/follow/${
+        auth.userId
+      }`,
+      {loggedInUser: auth.userId},
+      axiosConfig
+    );
+
+    console.log(response)
+  }
+
   const inputFile = useRef(null);
 
   useEffect(() => {
@@ -120,6 +141,8 @@ function SingleUserPage() {
     // fetchSingleUserFeed();
   };
 
+  // let loggedinFollowing = user.followers.includes(auth.userId) ? 'Follow' : 'Unfollow'
+
   return (
     <div className="mt-4">
       <div>
@@ -159,7 +182,8 @@ function SingleUserPage() {
                         className="font-bold px-8 py-4 rounded-3xl drop-shadow-md shadow-md"
                         onClick={() => followUserHandler(user._id)}
                       >
-                        Follow
+                        {/* Follow */}
+                        {user.followers.includes(auth.userId) ? 'Follow' : 'Unfollow'}
                       </button>
 
                       <CiPaperplane className="text-3xl mr-2 stroke-black stroke-[0.5px] hover:stroke-[0.75px]" />
