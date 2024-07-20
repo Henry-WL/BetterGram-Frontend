@@ -29,7 +29,7 @@ function SinglePost({ post, setFeed, feed, showAllComments }) {
         headers: {
           Accept: "application/json",
           "Content-Type": "application/json",
-          //   Authorization: "Bearer " + auth.token,
+            Authorization: "Bearer " + auth.token,
         },
         body: JSON.stringify({
           userID: auth.userId,
@@ -88,7 +88,7 @@ function SinglePost({ post, setFeed, feed, showAllComments }) {
           headers: {
             Accept: "application/json",
             "Content-Type": "application/json",
-            //   Authorization: "Bearer " + auth.token,
+              Authorization: "Bearer " + auth.token,
           },
           body: JSON.stringify({
             userID: auth.userId,
@@ -122,7 +122,7 @@ function SinglePost({ post, setFeed, feed, showAllComments }) {
           headers: {
             Accept: "application/json",
             "Content-Type": "application/json",
-            //   Authorization: "Bearer " + auth.token,
+              Authorization: "Bearer " + auth.token,
           },
           body: JSON.stringify({
             userID: auth.userId,
