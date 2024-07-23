@@ -1,11 +1,8 @@
 import React, { useContext, useState } from "react";
 import { IoIosMore } from "react-icons/io";
-import { CiHeart } from "react-icons/ci";
 import { CiChat1 } from "react-icons/ci";
 import { CiPaperplane } from "react-icons/ci";
-import { CiBookmark } from "react-icons/ci";
 import { HiOutlineHeart } from "react-icons/hi";
-import { HiOutlineBookmark } from "react-icons/hi";
 import CommentsList from "./CommentsList";
 import authContext from "../context/auth-context";
 import { useNavigate } from "react-router-dom";
@@ -19,8 +16,6 @@ function SinglePost({ post, setFeed, feed, showAllComments }) {
 
   const commentSubmitHandler = async (e, postID) => {
     e.preventDefault();
-    console.log("first");
-    console.log(postID);
 
     const response = await fetch(
       `${import.meta.env.VITE_BACKEND_URL}/posts/commentPost/${postID}`,
@@ -29,7 +24,7 @@ function SinglePost({ post, setFeed, feed, showAllComments }) {
         headers: {
           Accept: "application/json",
           "Content-Type": "application/json",
-            Authorization: "Bearer " + auth.token,
+          Authorization: "Bearer " + auth.token,
         },
         body: JSON.stringify({
           userID: auth.userId,
@@ -42,13 +37,9 @@ function SinglePost({ post, setFeed, feed, showAllComments }) {
 
     const data = await response.json();
 
-    console.log(data, "comment submit");
-
     const updatedFeed = feed.map((post) => {
       return post._id === postID ? { ...data.updatedPost } : post;
     });
-
-    console.log(updatedFeed, "updated FEED!");
 
     setFeed(updatedFeed);
   };
@@ -58,19 +49,17 @@ function SinglePost({ post, setFeed, feed, showAllComments }) {
   };
 
   const deletePostHandler = async () => {
-    console.log("first");
-
     try {
       const response = await axios.delete(
-        `${import.meta.env.VITE_BACKEND_URL}/posts/singlePost/${post._id}`
-      , {
-        headers: {
+        `${import.meta.env.VITE_BACKEND_URL}/posts/singlePost/${post._id}`,
+        {
+          headers: {
             Accept: "application/json",
             "Content-Type": "application/json",
             Authorization: "Bearer " + auth.token,
-          }
-    });
-      console.log(response, "deleted successfully!");
+          },
+        }
+      );
 
       navigate("/");
     } catch (error) {
@@ -88,33 +77,22 @@ function SinglePost({ post, setFeed, feed, showAllComments }) {
           headers: {
             Accept: "application/json",
             "Content-Type": "application/json",
-              Authorization: "Bearer " + auth.token,
+            Authorization: "Bearer " + auth.token,
           },
           body: JSON.stringify({
             userID: auth.userId,
-            //   loggedInUserUsername,
-            //   addedUser: uid,
-            //   addedUserUsername,
-            // loggedInUser: authuid
           }),
         }
       );
 
       const data = await response.json();
 
-      console.log(data, 'unlikePOSTDATA');
-
-      //   setFeed([data.updatedPost])
       const updatedFeed = feed.map((post) => {
         return post._id === postId ? { ...data.updatedPost } : post;
       });
 
-      console.log(updatedFeed, "updated Feed");
-      //   console.log('first', postId)
       setFeed(updatedFeed);
     } else {
-      console.log("liffihoih");
-      console.log(postId);
       const response = await fetch(
         `${import.meta.env.VITE_BACKEND_URL}/posts/likePost/${postId}`,
         {
@@ -122,29 +100,20 @@ function SinglePost({ post, setFeed, feed, showAllComments }) {
           headers: {
             Accept: "application/json",
             "Content-Type": "application/json",
-              Authorization: "Bearer " + auth.token,
+            Authorization: "Bearer " + auth.token,
           },
           body: JSON.stringify({
             userID: auth.userId,
-            //   loggedInUserUsername,
-            //   addedUser: uid,
-            //   addedUserUsername,
-            // loggedInUser: authuid
           }),
         }
       );
 
       const data = await response.json();
 
-      console.log(data, 'likePOSTDATA');
-
-      //   setFeed([data.updatedPost])
       const updatedFeed = feed.map((post) => {
         return post._id === postId ? { ...data.updatedPost } : post;
       });
 
-      console.log(updatedFeed, "updated Feed");
-      //   console.log('first', postId)
       setFeed(updatedFeed);
     }
   };
@@ -168,10 +137,18 @@ function SinglePost({ post, setFeed, feed, showAllComments }) {
             onClick={() => navigate(`/user/${post.userID._id}`)}
           />
           <div className="flex-col justify-center content-center inline-block">
-            <p className="text-lg font-bold text-left cursor-pointer" onClick={() => navigate(`/user/${post.userID._id}`)}>
+            <p
+              className="text-lg font-bold text-left cursor-pointer"
+              onClick={() => navigate(`/user/${post.userID._id}`)}
+            >
               {post.userID.username}
             </p>
-            <p className="text-gray-400 text-left cursor-pointer" onClick={() => navigate(`/user/${post.userID._id}`)}>@{post.userID.username}</p>
+            <p
+              className="text-gray-400 text-left cursor-pointer"
+              onClick={() => navigate(`/user/${post.userID._id}`)}
+            >
+              @{post.userID.username}
+            </p>
           </div>
         </div>
 
@@ -202,10 +179,6 @@ function SinglePost({ post, setFeed, feed, showAllComments }) {
 
             <CiPaperplane className="text-3xl mr-2 stroke-black stroke-[0.5px] hover:stroke-[0.75px] cursor-pointer" />
           </div>
-          {/* 
-        <div>
-          <HiOutlineBookmark className="text-3xl mr-2 stroke-black hover:fill-gray-900 stroke-[1.5px]" />
-        </div> */}
 
           <div className="text-3xl flex flex-col  justify-center items-center">
             <IoIosMore
@@ -241,39 +214,11 @@ function SinglePost({ post, setFeed, feed, showAllComments }) {
               value={commentText}
             ></input>
             <button type="submit">
-
-            <CiPaperplane className="cursor-pointer text-2xl mr-2 stroke-black stroke-[0.25px] mt-1"/>
+              <CiPaperplane className="cursor-pointer text-2xl mr-2 stroke-black stroke-[0.25px] mt-1" />
             </button>
           </form>
         </div>
       </div>
-
-      {/* <div className="px-6 py-2">
-        // <div className="w-100 text-left">
-        //   <p className="font-bold">{post.likes.length} Likes</p>
-        // </div>
-
-        <div className="w-100 text-left flex">
-          <p className="font-bold">{post.userID.username}</p>
-          <p className="ml-2">{post.status}</p>
-        </div>
-        <div className="w-100 text-left">
-          {
-            !showAllComments && <p className="text-gray-400 cursor-pointer" onClick={() => navigate(`/post/${post._id}`)}>View All Comments</p>
-          }
-          <div className="flex-row">
-            {showAllComments ? post.comments.length !== 0 &&
-              post.comments.map((comment) => {
-                return <CommentsList comment={comment} />;
-              }) : post.comments.length !== 0 &&
-              post.comments.slice(0,3).map((comment) => {
-                return <CommentsList comment={comment} />;
-              })}
-         
-          </div>
-        </div> */}
-
-      {/* </div> */}
     </div>
   );
 }
