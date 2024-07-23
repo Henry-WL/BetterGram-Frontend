@@ -106,7 +106,7 @@ function EditUser() {
       <div className="flex justify-between w-full border-b-2">
         <button
           className="text-lg"
-          onClick={() => navigate(`/user/${auth.userId}`)}
+          onClick={() => navigate(-1)}
         >
           Cancel
         </button>
