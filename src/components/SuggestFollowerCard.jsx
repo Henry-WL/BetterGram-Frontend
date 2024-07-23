@@ -1,5 +1,4 @@
 import React, { useContext, useState } from "react";
-import { IoIosMore } from "react-icons/io";
 import authContext from "../context/auth-context";
 import { useNavigate } from "react-router-dom";
 
@@ -11,9 +10,6 @@ function SuggestFollowerCard({ user }) {
       ))
 
   const followUserHandler = async (uid, following) => {
-    console.log(uid);
-    console.log("click on frontend");
-
     if (following) {
       const response = await fetch(
         `${import.meta.env.VITE_BACKEND_URL}/users/unfollow/${uid}`,
@@ -26,27 +22,15 @@ function SuggestFollowerCard({ user }) {
           },
           body: JSON.stringify({
             loggedInUser: auth.userId,
-            // loggedInUserUsername,
-            // addedUser: uid,
-            // addedUserUsername,
-            // loggedInUser: authuid
           }),
         }
       );
 
       const data = await response.json();
-      console.log(data);
 
       setFollowing(false)
 
-    //   const updatedUsers = users.map((user) => {
-    //     return user._id === uid ? { ...data.doc } : user;
-    //   });
-
-    //   console.log(updatedUsers, "updated Feed");
-    //   //   console.log('first', postId)
-    //   setUsers(updatedUsers);
-    } //   setFeed([data.updatedPost])
+    } 
     else {
       const response = await fetch(
         `${import.meta.env.VITE_BACKEND_URL}/users/follow/${uid}`,
@@ -59,10 +43,6 @@ function SuggestFollowerCard({ user }) {
           },
           body: JSON.stringify({
             loggedInUser: auth.userId,
-            // loggedInUserUsername,
-            // addedUser: uid,
-            // addedUserUsername,
-            // loggedInUser: authuid
           }),
         }
       );
@@ -70,10 +50,6 @@ function SuggestFollowerCard({ user }) {
       setFollowing(true)
     }
   };
-
-//   const following = user.followers.some(
-//     (follower) => follower._id === auth.userId
-//   );
 
   return (
     <div className="flex mx-6 mb-2 justify-between w-full">
@@ -94,9 +70,6 @@ function SuggestFollowerCard({ user }) {
         <p
           className={`text-sm font-bold cursor-pointer 
           ${following ? `text-gray-500` : `text-blue-600`}`}
-          // disabled={user.followers.some(
-          //   (follower) => follower._id === auth.userId
-          // )}
           onClick={(e) => followUserHandler(user._id, following)}
         >
           {following ? "Unfollow" : "Follow"}
