@@ -70,6 +70,7 @@ function SingleUserPage() {
       );
   
       console.log(response)
+      setUser(response.data.doc);
 
     } else {
       const response = await axios.post(
@@ -81,6 +82,7 @@ function SingleUserPage() {
       );
   
       console.log(response)
+      setUser(response.data.doc);
 
     }
 
