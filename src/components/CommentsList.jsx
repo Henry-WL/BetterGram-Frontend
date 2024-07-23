@@ -1,24 +1,10 @@
 import React, { useState } from "react";
-import { format } from "date-fns";
 import { useNavigate } from "react-router-dom";
 
 function CommentsList({ comment, showAllComments }) {
-  const [showMore, setShowMore] = useState(false);
-  console.log(comment)
   const navigate = useNavigate()
-console.log(comment)
+
   return (
-    // if (showAllComments) {
-    //     return (
-
-    //     )
-    // } else {
-    //     return (
-
-    //     )
-    // }
-
-    // <div className="flex p-2">
     <div>
       {showAllComments ? (
         <div className="flex p-2">
@@ -32,25 +18,13 @@ console.log(comment)
         </div>
       ) : (
         <div className="flex">
-          {/* <img src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg" className="h-8 w-8 rounded-full"/> */}
           <h2 className="font-bold cursor-pointer" onClick={() => navigate(`/user/${comment._id._id}`)}>{comment._id.username}</h2>
           <p className="ml-1">{comment.text}</p>
         </div>
       )}
     </div>
   );
-
-  {
-    /* {showMore ? comment.text : `${comment.text.substring(0,20)}`}
-              <br/>
-              {comment.text.length > 20 &&
-                  <button onClick={() => setShowMore(!showMore)} className="text-gray-600">{showMore ? 'Show less' : 'Show more'}</button>
-        
-              }
-              <h3>Date: {format(new Date(comment.time), "dd-MM-yyyy h:mm a")}</h3>
-              <p>{comment._id.username}</p> */
-  }
-  // </div>
 }
 
 export default CommentsList;
+ 
