@@ -1,9 +1,7 @@
 import React, { useContext, useState } from "react";
 import { IoIosMore } from "react-icons/io";
-import { CiHeart } from "react-icons/ci";
 import { CiChat1 } from "react-icons/ci";
 import { CiPaperplane } from "react-icons/ci";
-import { CiBookmark } from "react-icons/ci";
 import { HiOutlineHeart } from "react-icons/hi";
 import { HiOutlineBookmark } from "react-icons/hi";
 import CommentsList from "./CommentsList";
@@ -11,123 +9,104 @@ import authContext from "../context/auth-context";
 import { useNavigate } from "react-router-dom";
 
 function InstagramCard({ post, setFeed, feed, showAllComments }) {
-    const [commentText, setCommentText] = useState('')
-    const auth = useContext(authContext)
-    const navigate = useNavigate()
+  const [commentText, setCommentText] = useState("");
+  const auth = useContext(authContext);
+  const navigate = useNavigate();
 
-    const commentSubmitHandler = async (e, postID) => {
-        e.preventDefault()
-        console.log('first')
-        console.log(postID)
+  const commentSubmitHandler = async (e, postID) => {
+    e.preventDefault();
 
-        const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}/posts/commentPost/${postID}`, {
-            method: "POST",
-            headers: {
-              Accept: "application/json",
-              "Content-Type": "application/json",
-              Authorization: "Bearer " + auth.token,
-            },
-            body: JSON.stringify({
-              userID: auth.userId,
-              text: commentText
-            }),
-          });
+    const response = await fetch(
+      `${import.meta.env.VITE_BACKEND_URL}/posts/commentPost/${postID}`,
+      {
+        method: "POST",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + auth.token,
+        },
+        body: JSON.stringify({
+          userID: auth.userId,
+          text: commentText,
+        }),
+      }
+    );
 
-          setCommentText('')
-          
-          const data = await response.json()
-          
-          console.log(data)
+    setCommentText("");
 
-          const updatedFeed = feed.map((post) => {
-            return post._id === postID ? {...data.updatedPost} : post
-          })
+    const data = await response.json();
 
-          console.log(updatedFeed)
+    const updatedFeed = feed.map((post) => {
+      return post._id === postID ? { ...data.updatedPost } : post;
+    });
 
-          setFeed(updatedFeed)
-          
-    }
+    setFeed(updatedFeed);
+  };
 
-    const checkLiked = () => {
-        return post.likes.some(user => user._id === auth.userId) ? true : false
-    }
+  const checkLiked = () => {
+    return post.likes.some((user) => user._id === auth.userId) ? true : false;
+  };
 
-    const likePostHandler = async(postId) => {
-
-        const checkLikedRun = checkLiked()
-        if (checkLikedRun) {
-            const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}/posts/unlikePost/${postId}`, {
-                method: "POST",
-                headers: {
-                  Accept: "application/json",
-                  "Content-Type": "application/json",
-                  Authorization: "Bearer " + auth.token,
-                },
-                body: JSON.stringify({
-                  userID: auth.userId,
-                //   loggedInUserUsername,
-                //   addedUser: uid,
-                //   addedUserUsername,
-                  // loggedInUser: authuid
-                }),
-              });
-    
-              const data = await response.json()
-    
-              console.log(data)
-    
-            //   setFeed([data.updatedPost])
-              const updatedFeed = feed.map((post) => {
-                return post._id === postId ? {...data.updatedPost} : post
-              })
-              
-              console.log(updatedFeed, 'updated Feed')
-              //   console.log('first', postId)
-                setFeed(updatedFeed)
-        } else {
-
-            console.log('liffihoih')
-            console.log(postId)
-            const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}/posts/likePost/${postId}`, {
-                method: "POST",
-                headers: {
-                  Accept: "application/json",
-                  "Content-Type": "application/json",
-                  Authorization: "Bearer " + auth.token,
-                },
-                body: JSON.stringify({
-                  userID: auth.userId,
-                //   loggedInUserUsername,
-                //   addedUser: uid,
-                //   addedUserUsername,
-                  // loggedInUser: authuid
-                }),
-              });
-    
-              const data = await response.json()
-    
-              console.log(data)
-    
-            //   setFeed([data.updatedPost])
-              const updatedFeed = feed.map((post) => {
-                return post._id === postId ? {...data.updatedPost} : post
-              })
-              
-              console.log(updatedFeed, 'updated Feed')
-              //   console.log('first', postId)
-                setFeed(updatedFeed)
+  const likePostHandler = async (postId) => {
+    const checkLikedRun = checkLiked();
+    if (checkLikedRun) {
+      const response = await fetch(
+        `${import.meta.env.VITE_BACKEND_URL}/posts/unlikePost/${postId}`,
+        {
+          method: "POST",
+          headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json",
+            Authorization: "Bearer " + auth.token,
+          },
+          body: JSON.stringify({
+            userID: auth.userId,
+          }),
         }
-    }
+      );
 
- 
+      const data = await response.json();
+
+      const updatedFeed = feed.map((post) => {
+        return post._id === postId ? { ...data.updatedPost } : post;
+      });
+
+      setFeed(updatedFeed);
+    } else {
+      const response = await fetch(
+        `${import.meta.env.VITE_BACKEND_URL}/posts/likePost/${postId}`,
+        {
+          method: "POST",
+          headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json",
+            Authorization: "Bearer " + auth.token,
+          },
+          body: JSON.stringify({
+            userID: auth.userId,
+          }),
+        }
+      );
+
+      const data = await response.json();
+
+      const updatedFeed = feed.map((post) => {
+        return post._id === postId ? { ...data.updatedPost } : post;
+      });
+
+      setFeed(updatedFeed);
+    }
+  };
+
   return (
     <div className="shadow-xl sm:w-4/5 rounded-lg my-6">
       <div className="flex mx-6 mb-2 justify-between">
-        <div className="flex cursor-pointer" onClick={() => navigate(`/user/${post.userID._id}`)}>
+        <div
+          className="flex cursor-pointer"
+          onClick={() => navigate(`/user/${post.userID._id}`)}
+        >
           <img
             src={post.userID.avatarURL}
-            // change src later to use avatar URL
             alt="Shoes"
             className="object-cover h-12 w-12 rounded-full"
           />
@@ -139,26 +118,23 @@ function InstagramCard({ post, setFeed, feed, showAllComments }) {
 
         <div className="text-3xl flex-col content-center cursor-pointer">
           <IoIosMore />
-          {/* Add Delete here? */}
         </div>
       </div>
       <div className="">
-        <img
-          src={post.imageURL}
-          alt="Shoes"
-          className=""
-        />
+        <img src={post.imageURL} alt="Shoes" className="" />
       </div>
       <div className="pl-5 flex justify-between p-2">
         <div className="flex">
           <HiOutlineHeart
-            className={`cursor-pointer text-3xl mr-2 stroke-black hover:stroke-red-500 hover:fill-red-500 stroke-[1.5px] ${checkLiked() ? `fill-red-500 stroke-red-500` : ``}`}
+            className={`cursor-pointer text-3xl mr-2 stroke-black hover:stroke-red-500 hover:fill-red-500 stroke-[1.5px] ${
+              checkLiked() ? `fill-red-500 stroke-red-500` : ``
+            }`}
             onClick={() => likePostHandler(post._id)}
           />
-
-          {/* <CiHeart className="text-3xl mr-2 stroke-black fill-blue-500 hover:stroke-red-500 text-red-500 stroke-[0.5px]"/> */}
-          {/* <FaRegComment className="text-3xl"/> */}
-          <CiChat1 className="cursor-pointer text-3xl mr-2 stroke-black stroke-[0.5px] hover:stroke-[1px]" onClick={() => navigate(`/post/${post._id}`)} />
+          <CiChat1
+            className="cursor-pointer text-3xl mr-2 stroke-black stroke-[0.5px] hover:stroke-[1px]"
+            onClick={() => navigate(`/post/${post._id}`)}
+          />
 
           <CiPaperplane className="cursor-pointer text-3xl mr-2 stroke-black stroke-[0.5px] hover:stroke-[0.75px]" />
         </div>
@@ -174,40 +150,46 @@ function InstagramCard({ post, setFeed, feed, showAllComments }) {
         </div>
 
         <div className="w-100 text-left flex">
-          <p className="font-bold cursor-pointer" onClick={() => navigate(`/user/${post.userID._id}`)}>{post.userID.username}</p>
+          <p
+            className="font-bold cursor-pointer"
+            onClick={() => navigate(`/user/${post.userID._id}`)}
+          >
+            {post.userID.username}
+          </p>
           <p className="ml-2">{post.status}</p>
         </div>
         <div className="w-100 text-left">
-          {
-            !showAllComments && <p className="text-gray-400 cursor-pointer" onClick={() => navigate(`/post/${post._id}`)}>View All Comments</p>
-          }
+          {!showAllComments && (
+            <p
+              className="text-gray-400 cursor-pointer"
+              onClick={() => navigate(`/post/${post._id}`)}
+            >
+              View All Comments
+            </p>
+          )}
           <div className="flex-row">
             {post.comments.length !== 0 &&
-              post.comments.slice(0,3).map((comment) => {
+              post.comments.slice(0, 3).map((comment) => {
                 return <CommentsList comment={comment} />;
               })}
-            {/* {post.comments.length !== 0 &&
-              post.comments.slice(0,3).map((comment) => {
-                return <CommentsList comment={comment} />;
-              })} */}
           </div>
         </div>
 
         <div className="border-t w-full mt-2 text-left">
-          {/* <div className="flex justify-between align-middle"> */}
-            <form onSubmit={(e) => commentSubmitHandler(e, post._id)} className="flex justify-between align-middle">
-              <input
-                className="pt-2 w-full outline-none"
-                placeholder="Add a comment..."
-                onChange={(e) => setCommentText(e.target.value)}
-                value={commentText}
-              ></input>
-              <CiPaperplane className="text-2xl mr-2 stroke-black stroke-[0.25px] mt-1" />
-            </form>
-          {/* </div> */}
+          <form
+            onSubmit={(e) => commentSubmitHandler(e, post._id)}
+            className="flex justify-between align-middle"
+          >
+            <input
+              className="pt-2 w-full outline-none"
+              placeholder="Add a comment..."
+              onChange={(e) => setCommentText(e.target.value)}
+              value={commentText}
+            ></input>
+            <CiPaperplane className="text-2xl mr-2 stroke-black stroke-[0.25px] mt-1" />
+          </form>
         </div>
       </div>
-      
     </div>
   );
 }
