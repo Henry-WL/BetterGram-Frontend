@@ -1,4 +1,4 @@
-# Project: ChatMe Application
+# Project: BetterGram Application
 
 [Visit The App](https://chat-me-7fz3.onrender.com/) (Please allow a few minutes for the server to start, you may have to click logout in the top right, then login as guest)
 
@@ -63,17 +63,6 @@ The app is designed to be responsive across various devices, including desktops,
 
 
 ## Mobile Screenshots
-
-<img width="376" alt="Screenshot 2024-05-30 at 22 58 47" src="https://github.com/BulletToothTony/chat-app-frontend/assets/58192857/09cd5e06-0c12-476b-99e9-ef0b316e5183">
-<img width="377" alt="Screenshot 2024-05-30 at 22 58 18" src="https://github.com/BulletToothTony/chat-app-frontend/assets/58192857/33cf63d6-1e07-445c-8d5b-b1816b8e9267">
-
-<img width="378" alt="Screenshot 2024-05-30 at 22 59 44" src="https://github.com/BulletToothTony/chat-app-frontend/assets/58192857/abaa73f5-0131-4496-a304-91e3b086f589">
-<img width="378" alt="Screenshot 2024-05-30 at 23 00 06" src="https://github.com/BulletToothTony/chat-app-frontend/assets/58192857/be9c1a8d-f97a-409d-bbc8-227ac45bdbcf">
-
-
-<img width="379" alt="Screenshot 2024-05-30 at 23 00 20" src="https://github.com/BulletToothTony/chat-app-frontend/assets/58192857/5c05ff9f-3027-4fd2-8d8e-62172e2a92fc">
-<img width="375" alt="Screenshot 2024-05-30 at 23 00 34" src="https://github.com/BulletToothTony/chat-app-frontend/assets/58192857/7fc08394-080f-4785-97eb-91c1109b3da1">
-
 
 
 
