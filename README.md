@@ -64,6 +64,21 @@ The app is designed to be responsive across various devices, including desktops,
 
 ## Mobile Screenshots
 
+<img width="377" alt="Screenshot 2024-07-29 at 12 55 07" src="https://github.com/user-attachments/assets/9f128ab4-4a7a-4a4a-8825-2e7a13c07dc3">
+<img width="377" alt="Screenshot 2024-07-29 at 12 55 14" src="https://github.com/user-attachments/assets/98eac0f7-779d-4fc8-a8dd-125cf81cd47d">
+<img width="377" alt="Screenshot 2024-07-29 at 12 56 26" src="https://github.com/user-attachments/assets/3b0ad9ac-db87-47ea-bc21-ed0b2fe92679">
+
+<img width="377" alt="Screenshot 2024-07-29 at 12 56 33" src="https://github.com/user-attachments/assets/f5dc9964-216b-4c6a-876e-11d82f2d7a23">
+<img width="377" alt="Screenshot 2024-07-29 at 12 56 44" src="https://github.com/user-attachments/assets/94d7affd-4ae5-421e-91d5-d51d0a551441">
+
+<img width="377" alt="Screenshot 2024-07-29 at 12 56 58" src="https://github.com/user-attachments/assets/1c285205-6b32-4cc9-aeb6-56586f602b26">
+
+<img width="377" alt="Screenshot 2024-07-29 at 12 57 18" src="https://github.com/user-attachments/assets/a48b06c2-3f0b-46a8-a39b-36a8bf20d875">
+
+<img width="377" alt="Screenshot 2024-07-29 at 12 58 26" src="https://github.com/user-attachments/assets/348791b6-a88b-4d19-afcb-fc9097b52b16">
+<img width="377" alt="Screenshot 2024-07-29 at 12 58 32" src="https://github.com/user-attachments/assets/156e62db-59cb-4bbb-99b1-82610681f98d">
+
+
 
 
 ## Local install and setup
