@@ -2,11 +2,11 @@
 
 [Visit The App](https://chat-me-7fz3.onrender.com/) (Please allow a few minutes for the server to start, you may have to click logout in the top right, then login as guest)
 
-[Backend Repository](https://github.com/BulletToothTony/chat-app-backend)
+[Backend Repository](https://github.com/BulletToothTony/BetterGram-Backend)
 
 ## Demo video
 
-https://streamable.com/rnj0br
+www.google.co.uk
 
 ## Table of Contents
 - [About The Project](#about-the-project)
@@ -17,19 +17,19 @@ https://streamable.com/rnj0br
 
 ## About The Project
 
-'ChatMe' is a full stack application allowing users to sign-up and add users to chat to in real-time. The application is fully responsive allowing use on mobile and desktop.
+'BetterGram' is a full stack clone of instagram, the applcication is made in the MERN stack and has all the features of instagram, allowing use on mobile and desktop.
 
 #### Built With
 
-#### - React.js, Tailwind and DaisyUI
+#### - React.js, Tailwind and DaisyUI, Node.js, Express, MongoDB
 
 ## Key Features
 
 #### Authentication and Authorization with JWTs
-The ChatMe app implements authentication and authorization using JSON Web Tokens (JWTs). Upon login, the backend auth server issues a JWT, which is stored on the client-side. This token is sent in the request headers for routes that require authentication, ensuring secure access to protected resources.
+The BetterGram app implements authentication and authorization using JSON Web Tokens (JWTs). Upon login, the backend auth server issues a JWT, which is stored on the client-side. This token is sent in the request headers for routes that require authentication, ensuring secure access to protected resources.
 
-#### Real-time Chat
-Chatting with other users is the one of the key components of the app. After adding a user as a friend the two users can chat to each other in private. Other users will not be able to see their chat.
+#### Real-time Feed
+If a user likes or comments on a photo the feed will update in real-time without the user needing to refresh the page to see changes, this allows for a great user experience.
 
 #### Editing Profile
 Users can edit their own profile if they are logged in, changing their username, email and password are all available, all updates are shown in real time. If a user edits their username this will update across their chats.
@@ -39,18 +39,28 @@ The app is designed to be responsive across various devices, including desktops,
 
 ## Demo Screenshots
 
+<img width="1727" alt="Screenshot 2024-07-29 at 12 48 27" src="https://github.com/user-attachments/assets/e39abb23-cdab-4414-91d0-499f3ee50425">
 
-<img width="1725" alt="Screenshot 2024-05-29 at 15 56 02" src="https://github.com/BulletToothTony/chat-app-frontend/assets/58192857/9fa95685-9832-44cc-b8de-1786b0315142">
+<img width="1727" alt="Screenshot 2024-07-29 at 12 49 27" src="https://github.com/user-attachments/assets/b8f7f608-32fc-48e8-beaa-e8b0975cbf77">
 
-<img width="1725" alt="Screenshot 2024-05-29 at 15 58 56" src="https://github.com/BulletToothTony/chat-app-frontend/assets/58192857/0d116541-98a6-43d8-bd72-ae6fdfd24e6b">
+<img width="1727" alt="Screenshot 2024-07-29 at 12 49 41" src="https://github.com/user-attachments/assets/c8d92c89-dc43-4c0a-b279-d6e099e02194">
 
-<img width="1725" alt="Screenshot 2024-05-29 at 15 55 18" src="https://github.com/BulletToothTony/chat-app-frontend/assets/58192857/ce291c9e-83d4-4e36-b4c1-021123034a57">
+<img width="1727" alt="Screenshot 2024-07-29 at 12 52 09" src="https://github.com/user-attachments/assets/ddda70b1-923f-4c5b-b23a-4e1d25fca4c3">
 
-<img width="1725" alt="Screenshot 2024-05-29 at 15 56 30" src="https://github.com/BulletToothTony/chat-app-frontend/assets/58192857/57a92dea-d09c-4673-9f77-118f9f3f7ef2">
+<img width="1727" alt="Screenshot 2024-07-29 at 12 53 13" src="https://github.com/user-attachments/assets/edc795a7-f26e-4791-a8d2-8696431981f6">
 
-<img width="1725" alt="Screenshot 2024-05-29 at 15 56 54" src="https://github.com/BulletToothTony/chat-app-frontend/assets/58192857/ca3f713f-3540-4417-bf5b-5dc86730e8fd">
+<img width="1727" alt="Screenshot 2024-07-29 at 12 53 37" src="https://github.com/user-attachments/assets/dfabd0b2-d5b6-4f3c-836e-024cfa7db5b5">
 
-<img width="1725" alt="Screenshot 2024-05-29 at 15 57 15" src="https://github.com/BulletToothTony/chat-app-frontend/assets/58192857/063e4ed3-2e22-48ba-a53c-00ad6312a0f0">
+<img width="1722" alt="Screenshot 2024-07-29 at 12 59 25" src="https://github.com/user-attachments/assets/b1385075-5a60-4e6b-b709-9bee16d5d32d">
+
+<img width="1722" alt="Screenshot 2024-07-29 at 12 59 32" src="https://github.com/user-attachments/assets/19f8cb7e-c10c-4eb3-9134-a0ecb2684a0e">
+
+
+
+
+
+
+
 
 ## Mobile Screenshots
 
