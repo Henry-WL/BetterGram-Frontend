@@ -6,7 +6,7 @@ import InstagramCard from "../components/InstagramCard";
 import UserProfilePost from "../components/UserProfilePost";
 import { CiPaperplane } from "react-icons/ci";
 import axios from "axios";
-import SingleUserTopCard from "../components/SingleUserTopCard";
+// import SingleUserTopCard from "../components/SingleUserTopCard";
 
 function SingleUserPage() {
   const [user, setUser] = useState({});
@@ -70,7 +70,7 @@ function SingleUserPage() {
       );
   
       console.log(response)
-      setUser(response.data.doc);
+      setUser(response.data);
 
     } else {
       const response = await axios.post(
@@ -82,7 +82,6 @@ function SingleUserPage() {
       );
   
       console.log(response)
-      setUser(response.data.doc);
 
     }
 
