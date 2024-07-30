@@ -32,7 +32,7 @@ The BetterGram app implements authentication and authorization using JSON Web To
 If a user likes or comments on a photo the feed will update in real-time without the user needing to refresh the page to see changes, this allows for a great user experience.
 
 #### Editing Profile
-Users can edit their own profile if they are logged in, changing their username, email and password are all available, all updates are shown in real time. If a user edits their username this will update across their chats.
+Users can edit their own profile if they are logged in, changing their username, email, profile picture and password are all available, all updates are shown in real time. If a user edits their username this will update across their feed.
 
 #### Responsive Design
 The app is designed to be responsive across various devices, including desktops, tablets, and smartphones. This ensures optimal usability and accessibility regardless of screen size or device type.
