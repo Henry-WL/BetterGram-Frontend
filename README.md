@@ -1,6 +1,6 @@
 # Project: BetterGram Application
 
-[Visit The App](https://bettergram-frontend.onrender.com/) (Please allow a few minutes for the server to start, you may have to click logout in the top right, then login as guest)
+[Visit The App](https://bettergram-frontend.onrender.com/) (Please allow a few minutes for the server to start, then login as guest)
 
 [Backend Repository](https://github.com/BulletToothTony/BetterGram-Backend)
 
