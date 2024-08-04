@@ -97,6 +97,7 @@ The app is designed to be responsive across various devices, including desktops,
 
 ## Contact
 
+
 [LinkedIn](https://www.linkedin.com/in/henry-westhoff-lewis-b18a91196/)
 
 
