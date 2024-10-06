@@ -11,16 +11,7 @@ import BottomNav from "./components/BottomNav";
 
 function App() {
   const navigate = useNavigate();
-  // const auth = useContext(authContext)
-  // console.log(auth)
-  // const {isLoggedIn} = useContext(authContext)
-
-  // useEffect(() => {
-  //   if (!isLoggedIn) {
-  //     navigate('/login')
-  //   }
-
-  // }, [auth.isLoggedIn])
+  
 
   return (
     <AuthProvider>
